@@ -1,0 +1,29 @@
+body {
+  --privy-border-radius-sm: 6px;
+  --privy-border-radius-md: 12px;
+  --privy-border-radius-mdlg: 16px;
+  --privy-border-radius-lg: 24px;
+  --privy-border-radius-full: 9999px;
+
+  --privy-color-background: #1c1c1e;
+  --privy-color-background-2: #2c2c2e;
+  --privy-color-background-3: #1c1c1e;
+
+  --privy-color-foreground: ${TEXT_COLORS.one};
+  --privy-color-foreground-2: ${TEXT_COLORS.one};
+  --privy-color-foreground-3: #2c2c2e;
+  --privy-color-foreground-4: #2c2c2e;
+
+  --privy-color-foreground-accent: ${TEXT_COLORS.one};
+  --privy-color-accent: #7d00ff;
+  --privy-color-accent-light: #7d00ff;
+  --privy-color-accent-lightest: #7d00ff;
+  --privy-color-accent-dark: #6400cc;
+  --privy-color-accent-darkest: #6400cc;
+
+  --privy-color-success: ${COLORS.success};
+  --privy-color-error: ${COLORS.error};
+  --privy-color-error-light: ${COLORS.softError};
+  --privy-height-modal-full: 620px;
+  --privy-height-modal-compact: 480px;
+}

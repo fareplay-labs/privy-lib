@@ -1,0 +1,17 @@
+{
+  "name": "@zynkah/privy-lib",
+  "version": "1.0.0",
+  "description": "privy npm package",
+  "license": "ISC",
+  "author": "zynkah",
+  "type": "commonjs",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "devDependencies": {
+    "typescript": "^5.9.3"
+  }
+}
