@@ -1,17 +1,71 @@
 {
   "name": "@zynkah/privy-lib",
   "version": "1.0.0",
-  "description": "privy npm package",
+  "description": "A comprehensive React library for Privy authentication and wallet management with casino gaming features",
+  "keywords": [
+    "privy",
+    "wallet",
+    "authentication",
+    "web3",
+    "react",
+    "crypto",
+    "casino",
+    "gaming",
+    "blockchain",
+    "ethereum"
+  ],
+  "homepage": "https://github.com/Zynkah/privy-lib#readme",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Zynkah/privy-lib.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Zynkah/privy-lib/issues"
+  },
   "license": "ISC",
-  "author": "zynkah",
-  "type": "commonjs",
+  "author": {
+    "name": "zynkah",
+    "url": "https://github.com/Zynkah"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "type": "module",
   "main": "dist/index.js",
+  "module": "dist/index.js",
   "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
+    }
+  },
   "scripts": {
     "build": "tsc",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "prebuild": "rm -rf dist || rmdir /s /q dist || echo 'Dist folder cleared'",
+    "postbuild": "echo 'Build completed successfully'",
+    "dev": "tsc --watch",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prepublishOnly": "npm run build",
+    "lint": "echo 'No linting configured'",
+    "type-check": "tsc --noEmit",
+    "clean": "rm -rf dist || rmdir /s /q dist || echo 'Cleaned'"
+  },
+  "peerDependencies": {
+    "react": ">=16.8.0",
+    "react-dom": ">=16.8.0",
+    "@privy-io/react-auth": "^1.0.0",
+    "styled-components": ">=5.0.0",
+    "framer-motion": ">=6.0.0",
+    "valtio": ">=1.0.0"
   },
   "devDependencies": {
-    "typescript": "^5.9.3"
+    "typescript": "^5.9.3",
+    "@types/react": "^18.0.0",
+    "@types/react-dom": "^18.0.0",
+    "@types/styled-components": "^5.1.0"
   }
 }
