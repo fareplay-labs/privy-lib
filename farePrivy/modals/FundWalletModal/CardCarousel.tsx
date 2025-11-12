@@ -3,9 +3,9 @@ import { AnimatePresence, motion } from 'framer-motion'
 import { fundWalletModalState } from './FundWalletModalState'
 import { FundWalletMenu } from './FundWalletMenu'
 import { TransferModalFunds } from './TransferFunds'
-import { ButtonEnum } from '@/components/shared/Button'
-import { SVGS } from '@/assets'
-import { useIsBreakpoint } from '@/hooks/common/useIsBreakpoint'
+import { ButtonEnum } from "../components/shared/Button"
+import { SVGS } from "../assets"
+import { useIsBreakpoint } from "../hooks/common/useIsBreakpoint"
 import {
   ButtonText,
   Container,

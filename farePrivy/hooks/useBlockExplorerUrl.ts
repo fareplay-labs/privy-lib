@@ -1,5 +1,5 @@
 import { useMemo } from 'react'
-import { useAppChainConfigStore } from '@/store/useAppChainConfigStore'
+import { useAppChainConfigStore } from "../store/useAppChainConfigStore"
 
 export const useBlockExplorerUrl = () => {
   const appChainConfig = useAppChainConfigStore.use.appChainConfig()

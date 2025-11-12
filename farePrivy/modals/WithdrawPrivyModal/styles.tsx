@@ -1,8 +1,8 @@
 import { styled } from 'styled-components'
-import { Input } from '@/components/shared/Input'
+import { Input } from "../components/shared/Input"
 import { SectionDescription, WithdrawalButton } from '../../../Modals/styles'
-import { BORDER_COLORS, TEXT_COLORS } from '@/design'
-import { Button } from '@/components/shared/Button'
+import { BORDER_COLORS, TEXT_COLORS } from "../design"
+import { Button } from "../components/shared/Button"
 import { COLORS } from '../../config/constants'
 
 const secondary_color = COLORS.SECONDARY.DARK_GRAY

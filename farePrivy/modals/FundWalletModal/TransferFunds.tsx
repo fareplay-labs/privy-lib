@@ -1,13 +1,13 @@
 import { useEffect, useState } from 'react'
 import { styled } from 'styled-components'
 import numeral from 'numeral'
-import { SVGS } from '@/assets'
-import { FARE_COLORS, FONT_STYLES, SPACING, TEXT_COLORS } from '@/design'
-import { deviceBP } from '@/design/breakpoints'
-import { useActiveWallet } from '@/components/farePrivy/hooks'
-import { noUserSelect } from '@/style'
+import { SVGS } from "../assets"
+import { FARE_COLORS, FONT_STYLES, SPACING, TEXT_COLORS } from "../design"
+import { deviceBP } from "../design/breakpoints"
+import { useActiveWallet } from "../../hooks"
+import { noUserSelect } from "../style"
 import useCurrencyStore from '../../../../store/useCurrencyStore'
-import { CopyWalletInput } from '@/components/Modals/OnboardingModal/CopyWalletInput'
+import { CopyWalletInput } from "../components/Modals/OnboardingModal/CopyWalletInput"
 
 const DepositBoxWrapper = styled.div`
   display: flex;

@@ -1,5 +1,5 @@
-import { ButtonEnum } from '@/components/shared/Button'
-import ModalCard from '@/components/shared/Modal/Card'
+import { ButtonEnum } from "../components/shared/Button"
+import ModalCard from "../components/shared/Modal/Card"
 import { usePrivy } from '@privy-io/react-auth'
 import { useSnapshot } from 'valtio'
 import useCurrencyStore from '../../../../store/useCurrencyStore'
@@ -16,8 +16,8 @@ import { encodeFunctionData, parseAbi, parseUnits } from 'viem'
 import { useWithdrawPrivyModalState, withdrawPrivyModalState } from './withdrawPrivyModalState'
 import { WithdrawalButton } from '../../../Modals/styles'
 import { useState, useCallback, useEffect } from 'react'
-import usdcIcon from '@/assets/svg/usdc.svg'
-import { useActiveWallet } from '@/components/farePrivy/hooks/useActiveWallet'
+import usdcIcon from "../assets/svg/usdc.svg"
+import { useActiveWallet } from "../../hooks/useActiveWallet"
 import {
   SBalanceContent,
   SButton,

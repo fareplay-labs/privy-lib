@@ -1,6 +1,6 @@
 {
-  "name": "@zynkah/privy-lib",
-  "version": "1.0.1",
+  "name": "fare-privy-core",
+  "version": "1.1.0",
   "description": "A comprehensive React library for Privy authentication and wallet management with casino gaming features",
   "keywords": [
     "privy",
@@ -14,13 +14,13 @@
     "blockchain",
     "ethereum"
   ],
-  "homepage": "https://github.com/Zynkah/privy-lib#readme",
+  "homepage": "https://github.com/farePrivy#readme",
   "repository": {
     "type": "git",
-    "url": "https://github.com/Zynkah/privy-lib.git"
+    "url": "https://github.com/farePrivy.git"
   },
   "bugs": {
-    "url": "https://github.com/Zynkah/privy-lib/issues"
+    "url": "https://github.com/farePrivy/issues"
   },
   "license": "ISC",
   "author": {
@@ -48,24 +48,48 @@
     "prebuild": "rm -rf dist || rmdir /s /q dist || echo 'Dist folder cleared'",
     "postbuild": "echo 'Build completed successfully'",
     "dev": "tsc --watch",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "prepublishOnly": "npm run build",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage",
+    "prepublishOnly": "pnpm run build",
     "lint": "echo 'No linting configured'",
     "type-check": "tsc --noEmit",
-    "clean": "rm -rf dist || rmdir /s /q dist || echo 'Cleaned'"
+    "clean": "rm -rf dist || rmdir /s /q dist || echo 'Cleaned'",
+    "version": "pnpm run build && git add .",
+    "postversion": "git push && git push --tags"
+  },
+  "dependencies": {
+    "@privy-io/wagmi": "^0.2.12",
+    "@sentry/react": "^7.99.0",
+    "axios": "^1.6.2",
+    "framer-motion": "^10.16.16",
+    "numeral": "^2.0.6",
+    "react-countup": "^6.5.0",
+    "styled-components": "^6.1.6",
+    "valtio": "^1.12.1",
+    "viem": "^2.26.2",
+    "wagmi": "^2.12.0"
   },
   "peerDependencies": {
-    "react": ">=16.8.0",
-    "react-dom": ">=16.8.0",
     "@privy-io/react-auth": "^1.0.0",
-    "styled-components": ">=5.0.0",
     "framer-motion": ">=6.0.0",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
+    "styled-components": ">=5.0.0",
     "valtio": ">=1.0.0"
   },
   "devDependencies": {
-    "typescript": "^5.9.3",
-    "@types/react": "^18.0.0",
-    "@types/react-dom": "^18.0.0",
-    "@types/styled-components": "^5.1.0"
+    "@testing-library/jest-dom": "^6.9.1",
+    "@testing-library/react": "^16.3.0",
+    "@testing-library/user-event": "^14.6.1",
+    "@types/jest": "^30.0.0",
+    "@types/node": "^20.10.5",
+    "@types/react": "^18.2.45",
+    "@types/react-dom": "^18.2.18",
+    "@types/styled-components": "^5.1.0",
+    "jest": "^30.2.0",
+    "jest-environment-jsdom": "^30.2.0",
+    "ts-jest": "^29.4.5",
+    "typescript": "^5.3.3"
   }
 }

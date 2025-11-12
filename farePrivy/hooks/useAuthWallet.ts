@@ -11,9 +11,9 @@ import {
 import { usePrivyService } from './usePrivyService'
 import { useActiveWallet } from './useActiveWallet'
 import { useAuthenticatedUser } from './useIsUserAuthenticated'
-import { useAppChainConfigStore } from '@/store/useAppChainConfigStore'
-import { usePostLog } from '@/lib/posthog/logging'
-import { useSupportModal } from '@/hooks/useSupportModal'
+import { useAppChainConfigStore } from "../store/useAppChainConfigStore"
+import { usePostLog } from "../lib/posthog/logging"
+import { useSupportModal } from "../hooks/useSupportModal"
 
 export const useAuthWallet = () => {
   const { activeWallet } = useActiveWallet()

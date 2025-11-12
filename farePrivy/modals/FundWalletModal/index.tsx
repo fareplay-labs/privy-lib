@@ -1,8 +1,8 @@
 import { useRef, useMemo } from 'react'
-import { useActiveWallet } from '@/components/farePrivy/hooks'
+import { useActiveWallet } from "../../hooks"
 import { CardCarousel } from './CardCarousel'
 import { useSnapshot } from 'valtio'
-import ModalCard from '@/components/shared/Modal/Card'
+import ModalCard from "../components/shared/Modal/Card"
 import { AnimatePresence } from 'framer-motion'
 import { fundWalletModalState } from './FundWalletModalState'
 

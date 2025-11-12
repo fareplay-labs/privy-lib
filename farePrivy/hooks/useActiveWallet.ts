@@ -1,7 +1,7 @@
 import { useMemo } from 'react'
-import { appChainIdMap, DEFAULT_APP_CHAIN_ID } from '@/chains'
-import { type SupportedAppChainId } from '@/chains/types'
-import { useAppChainConfigStore } from '@/store/useAppChainConfigStore'
+import { appChainIdMap, DEFAULT_APP_CHAIN_ID } from "../chains"
+import { type SupportedAppChainId } from "../chains/types"
+import { useAppChainConfigStore } from "../store/useAppChainConfigStore"
 import { type ConnectedWallet, usePrivy, useWallets } from '@privy-io/react-auth'
 export interface ISmartConnectedWallet extends ConnectedWallet {
   smartWalletAddress?: string

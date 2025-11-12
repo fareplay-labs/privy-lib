@@ -5,7 +5,7 @@
 
 import { useMemo, useEffect, useCallback } from 'react'
 import { usePrivy, useWallets, type ConnectedWallet } from '@privy-io/react-auth'
-import { useAppChainConfigStore } from '@/store/useAppChainConfigStore'
+import { useAppChainConfigStore } from "../store/useAppChainConfigStore"
 import type { ISmartConnectedWallet } from './useActiveWallet'
 
 export interface WalletHookConfig {

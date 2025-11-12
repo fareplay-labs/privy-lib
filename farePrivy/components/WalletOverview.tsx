@@ -1,10 +1,10 @@
 import { useMemo } from 'react'
-import { BORDER_COLORS, FARE_COLORS } from '@/design'
-import { useActiveWallet } from '@/components/farePrivy/hooks'
-import { SVGS } from '@/assets'
+import { BORDER_COLORS, FARE_COLORS } from "../design"
+import { useActiveWallet } from "../hooks"
+import { SVGS } from "../assets"
 import { styled } from 'styled-components'
-import { switchWalletState } from '@/components/farePrivy/store/switchWallet'
-import { useIsBreakpoint } from '@/hooks/common/useIsBreakpoint'
+import { switchWalletState } from "../store/switchWallet"
+import { useIsBreakpoint } from "../hooks/common/useIsBreakpoint"
 
 const SWalletOverview = styled.div`
   display: flex;

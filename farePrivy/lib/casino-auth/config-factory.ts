@@ -4,7 +4,7 @@
  */
 
 import type { CasinoAuthConfig, CasinoPreset } from './types'
-import { defaultSupportedChain, supportedChains } from '@/chains'
+import { defaultSupportedChain, supportedChains } from "../chains"
 import { mergeConfigs } from './utils'
 import { getEnvironmentConfig } from '../../config/constants'
 

@@ -1,7 +1,7 @@
 import axios from 'axios'
 import { useMemo } from 'react'
-import { useAppChainConfigStore } from '@/store/useAppChainConfigStore'
-import { type IUserData } from '@/store/useUserDataStore'
+import { useAppChainConfigStore } from "../store/useAppChainConfigStore"
+import { type IUserData } from "../store/useUserDataStore"
 import { useToken } from '@privy-io/react-auth'
 import * as Sentry from '@sentry/react'
 

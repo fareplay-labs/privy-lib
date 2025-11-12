@@ -1,10 +1,10 @@
 import { useMemo, useEffect, useCallback } from 'react'
 import { createWalletClient, custom, type Hex, http } from 'viem'
-import useMaxValues from '@/hooks/useMaxValues'
-import { useActiveWallet } from '@/components/farePrivy/hooks'
-import { useAppChainConfigStore } from '@/store/useAppChainConfigStore'
-import useCurrencyStore from '@/store/useCurrencyStore'
-import useSUContractStore from '@/store/useSUContractStore'
+import useMaxValues from "../hooks/useMaxValues"
+import { useActiveWallet } from "../hooks"
+import { useAppChainConfigStore } from "../store/useAppChainConfigStore"
+import useCurrencyStore from "../store/useCurrencyStore"
+import useSUContractStore from "../store/useSUContractStore"
 import {
   toNexusAccount,
   createSmartAccountClient,

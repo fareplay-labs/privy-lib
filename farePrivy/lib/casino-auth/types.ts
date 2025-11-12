@@ -12,7 +12,7 @@ import type {
   AppGameName,
   AppChainConfig,
   AppBiconomyConfig,
-} from '@/chains/types'
+} from "../chains/types"
 
 // Game state types for transaction tracking
 export type GameTransactionStatus = 'pending' | 'confirmed' | 'failed'

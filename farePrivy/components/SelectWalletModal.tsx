@@ -2,15 +2,15 @@ import React, { useState, useMemo, useCallback } from 'react'
 import styled from 'styled-components'
 import { AnimatePresence, motion, type Variants } from 'framer-motion'
 import { useSnapshot } from 'valtio'
-import { switchWalletState } from '@/components/farePrivy/store/switchWallet'
+import { switchWalletState } from "../store/switchWallet"
 import * as privyReactAuth from '@privy-io/react-auth'
-import { PNGS, SVGS } from '@/assets'
-import { useAppChainConfigStore } from '@/store/useAppChainConfigStore'
+import { PNGS, SVGS } from "../assets"
+import { useAppChainConfigStore } from "../store/useAppChainConfigStore"
 import { FARE_GRADIENT } from '../../shared/Header/style'
-import { deviceBP } from '@/design/breakpoints'
-import { useIsBreakpoint } from '@/hooks/common/useIsBreakpoint'
-import { useAuthWallet } from '@/components/farePrivy/hooks/useAuthWallet'
-import { usePostLog } from '@/lib/posthog/logging'
+import { deviceBP } from "../design/breakpoints"
+import { useIsBreakpoint } from "../hooks/common/useIsBreakpoint"
+import { useAuthWallet } from "../hooks/useAuthWallet"
+import { usePostLog } from "../lib/posthog/logging"
 
 const { usePrivy, useWallets } = privyReactAuth
 

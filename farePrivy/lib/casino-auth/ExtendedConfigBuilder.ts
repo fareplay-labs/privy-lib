@@ -7,7 +7,7 @@ import type { CasinoAuthConfig, CasinoPreset } from './types'
 import { CasinoConfigFactory } from './config-factory'
 import { getEnvironmentConfig, PLUGIN_DEFAULTS } from '../../config/constants'
 import type { PrivyClientConfig } from '@privy-io/react-auth'
-import type { AppGameName } from '@/chains/types'
+import type { AppGameName } from "../chains/types"
 
 export interface CasinoConfigBuilderOptions {
   /**

@@ -1,11 +1,11 @@
 import { LayoutGroup, motion } from 'framer-motion'
 import { FundsAccordion } from './FundsAccordion'
-import { TEXT_COLORS } from '@/design'
-import { depositReadMoreText, transferReadMoreText } from '@/constants/funding'
+import { TEXT_COLORS } from "../design"
+import { depositReadMoreText, transferReadMoreText } from "../constants/funding"
 import { fundWalletModalState } from './FundWalletModalState'
-import { modalVariants } from '@/components/farePrivy/components/SelectWalletModal'
-import { SVGS } from '@/assets'
-import { useDepositModal } from '@/hooks/useShowDepositModal'
+import { modalVariants } from "../../components/SelectWalletModal"
+import { SVGS } from "../assets"
+import { useDepositModal } from "../hooks/useShowDepositModal"
 
 const AccordionDetails = styled(motion.div)`
   color: ${TEXT_COLORS.two};

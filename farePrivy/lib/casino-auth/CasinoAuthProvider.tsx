@@ -11,7 +11,7 @@ import { CasinoConfigFactory } from './config-factory'
 import { useCasinoAuth } from './hooks/useCasinoAuth'
 import { biconomyPrivyConfig, PRIVY_APP_CLIENT_ID, PRIVY_APP_ID } from '../../config/privy.config'
 import { COLORS } from '../../config/constants'
-import { addAppNoti } from '@/store/useNotiStore'
+import { addAppNoti } from "../store/useNotiStore"
 
 // Context for casino configuration
 const CasinoConfigContext = createContext<CasinoAuthConfig | null>(null)

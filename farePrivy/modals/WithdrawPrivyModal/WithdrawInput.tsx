@@ -1,8 +1,8 @@
 import { styled } from 'styled-components'
 import numeral from 'numeral'
-import { BORDER_COLORS, TEXT_COLORS } from '@/design'
-import { InputSlider } from '@/components/shared/Input/InputSlider'
-import { FareNumberInput } from '@/components/shared/Input/FareNumberInput'
+import { BORDER_COLORS, TEXT_COLORS } from "../design"
+import { InputSlider } from "../components/shared/Input/InputSlider"
+import { FareNumberInput } from "../components/shared/Input/FareNumberInput"
 import { COLORS } from '../../config/constants'
 
 const WithdrawalInput = styled(FareNumberInput)`

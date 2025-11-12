@@ -1,8 +1,8 @@
-import { SVGS } from '@/assets'
-import { TEXT_COLORS } from '@/design'
+import { SVGS } from "../assets"
+import { TEXT_COLORS } from "../design"
 import { AnimatePresence, motion, type Variants } from 'framer-motion'
-import { Button, ButtonEnum } from '@/components/shared/Button'
-import { deviceBP } from '@/design/breakpoints'
+import { Button, ButtonEnum } from "../components/shared/Button"
+import { deviceBP } from "../design/breakpoints"
 import styled from 'styled-components'
 interface FundsAccordionProps {
   title?: string
