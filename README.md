@@ -17,6 +17,18 @@ npm install fare-privy-core
 pnpm add fare-privy-core
 ```
 
+### ⚠️ Important Dependency Requirements
+
+This package requires specific version ranges to avoid breaking changes:
+
+- **styled-components**: Must use v5.x (not v6.x) - `npm install styled-components@^5.3.0`
+- **valtio**: Must use v1.x (not v2.x) - `npm install valtio@^1.12.0`
+
+```bash
+# Install compatible versions
+npm install styled-components@^5.3.0 valtio@^1.12.0
+```
+
 ## 💻 Quick Start
 
 ```tsx

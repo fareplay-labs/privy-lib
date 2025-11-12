@@ -16,7 +16,10 @@ function findImportsInFile(filePath) {
         statement: match[0],
         module: match[1],
         isAbsolute: match[1].startsWith("@/"),
-        isExternal: !match[1].startsWith(".") && !match[1].startsWith("@/"),
+        isExternal:
+          !match[1].startsWith(".") &&
+          !match[1].startsWith("@/") &&
+          !match[1].startsWith("node:"),
       });
     }
 

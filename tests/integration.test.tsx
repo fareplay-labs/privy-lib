@@ -16,7 +16,10 @@ describe("Package Integration Tests", () => {
       return (
         <div>
           <span data-testid="wallet-state">
-            Wallet State Available: {switchWalletState ? "Yes" : "No"}
+            Wallet Modal Open: {switchWalletState.isWalletModalOpen ? "Yes" : "No"}
+          </span>
+          <span data-testid="connector-type">
+            Connector Type: {switchWalletState.selectedConnectorType || "None"}
           </span>
         </div>
       );
@@ -30,7 +33,9 @@ describe("Package Integration Tests", () => {
 
     expect(screen.getByTestId("privy-provider")).toBeInTheDocument();
     expect(screen.getByTestId("wallet-state")).toBeInTheDocument();
-    expect(screen.getByText(/Wallet State Available: Yes/)).toBeInTheDocument();
+    expect(screen.getByText(/Wallet Modal Open: No/)).toBeInTheDocument();
+    expect(screen.getByTestId("connector-type")).toBeInTheDocument();
+    expect(screen.getByText(/Connector Type: None/)).toBeInTheDocument();
   });
 
   it("exports are accessible from main entry point", () => {
@@ -49,11 +54,13 @@ describe("Package Integration Tests", () => {
 
   it("handles complex integration scenarios", () => {
     const ComplexComponent = () => {
-      const hasWalletState = !!switchWalletState;
+      const modalOpen = switchWalletState.isWalletModalOpen;
+      const connectorType = switchWalletState.selectedConnectorType;
 
       return (
         <div data-testid="complex-component">
-          <span>Integration Test: {hasWalletState ? "Success" : "Failed"}</span>
+          <span>Modal Status: {modalOpen ? "Open" : "Closed"}</span>
+          <span>Connector: {connectorType || "Unset"}</span>
         </div>
       );
     };
@@ -64,6 +71,50 @@ describe("Package Integration Tests", () => {
       </PrivyProvider>
     );
 
-    expect(screen.getByText(/Integration Test: Success/)).toBeInTheDocument();
+    expect(screen.getByText(/Modal Status: Closed/)).toBeInTheDocument();
+    expect(screen.getByText(/Connector: Unset/)).toBeInTheDocument();
+  });
+
+  it("wallet state properties can be modified", () => {
+    // Test that the state is reactive and can be updated
+    const StateComponent = () => {
+      return (
+        <div>
+          <span data-testid="modal-state">
+            {switchWalletState.isWalletModalOpen ? "Modal Open" : "Modal Closed"}
+          </span>
+          <button
+            onClick={() => {
+              switchWalletState.isWalletModalOpen = true;
+              switchWalletState.selectedConnectorType = "metamask";
+            }}
+            data-testid="open-modal"
+          >
+            Open Modal
+          </button>
+        </div>
+      );
+    };
+
+    render(
+      <PrivyProvider appId="state-test">
+        <StateComponent />
+      </PrivyProvider>
+    );
+
+    // Initial state
+    expect(screen.getByText(/Modal Closed/)).toBeInTheDocument();
+
+    // Modify state
+    switchWalletState.isWalletModalOpen = true;
+    switchWalletState.selectedConnectorType = "metamask";
+
+    // Verify state changed
+    expect(switchWalletState.isWalletModalOpen).toBe(true);
+    expect(switchWalletState.selectedConnectorType).toBe("metamask");
+
+    // Reset state for other tests
+    switchWalletState.isWalletModalOpen = false;
+    switchWalletState.selectedConnectorType = "";
   });
 });

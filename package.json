@@ -1,6 +1,6 @@
 {
   "name": "fare-privy-core",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "A comprehensive React library for Privy authentication and wallet management with casino gaming features",
   "keywords": [
     "privy",
@@ -14,13 +14,13 @@
     "blockchain",
     "ethereum"
   ],
-  "homepage": "https://github.com/farePrivy#readme",
+  "homepage": "https://github.com/farePrivy/fare-privy-core#readme",
   "repository": {
     "type": "git",
-    "url": "https://github.com/farePrivy.git"
+    "url": "https://github.com/farePrivy/fare-privy-core.git"
   },
   "bugs": {
-    "url": "https://github.com/farePrivy/issues"
+    "url": "https://github.com/farePrivy/fare-privy-core/issues"
   },
   "license": "ISC",
   "author": {
@@ -65,8 +65,8 @@
     "framer-motion": "^10.16.16",
     "numeral": "^2.0.6",
     "react-countup": "^6.5.0",
-    "styled-components": "^6.1.6",
-    "valtio": "^1.12.1",
+    "styled-components": "^5.3.0",
+    "valtio": "^1.12.0 <2.0.0",
     "viem": "^2.26.2",
     "wagmi": "^2.12.0"
   },
@@ -75,8 +75,8 @@
     "framer-motion": ">=6.0.0",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
-    "styled-components": ">=5.0.0",
-    "valtio": ">=1.0.0"
+    "styled-components": ">=5.0.0 <6.0.0",
+    "valtio": ">=1.0.0 <2.0.0"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^6.9.1",

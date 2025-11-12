@@ -33,9 +33,6 @@ farePrivy/
 │       ├── index.ts
 │       ├── types.ts         # ⭐ ENHANCED: Full integration with chains, games, and USDC vault
 │       └── utils.ts
-├── modals/                  # Modal components
-│   ├── FundWalletModal/
-│   └── WithdrawPrivyModal/
 ├── store/                   # State management
 │   └── switchWallet.ts
 ├── styles/                  # Styling and themes

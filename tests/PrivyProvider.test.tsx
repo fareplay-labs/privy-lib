@@ -6,10 +6,9 @@ describe("PrivyProvider", () => {
   const mockAppId = "test-app-id";
 
   beforeEach(() => {
-    // Clear console logs before each test
+    // Clear all mocks before each test
     jest.clearAllMocks();
   });
-
   it("renders without crashing", () => {
     render(
       <PrivyProvider appId={mockAppId}>

@@ -33,13 +33,6 @@ function fixImportsInFile(filePath) {
         let targetPath = importPath;
 
         // Apply path mappings
-        for (const [pattern, replacement] of Object.entries(pathMappings)) {
-          if (importPath.startsWith(pattern)) {
-            targetPath = importPath.replace(pattern, replacement);
-            break;
-          }
-        }
-
         // For farePrivy internal imports, use relative paths
         if (importPath.startsWith("components/farePrivy/")) {
           const relativePath = importPath.replace("components/farePrivy/", "");
@@ -47,8 +40,15 @@ function fixImportsInFile(filePath) {
             filePath,
             join("./farePrivy", relativePath)
           );
+        } else {
+          // Apply path mappings for non-farePrivy imports
+          for (const [pattern, replacement] of Object.entries(pathMappings)) {
+            if (importPath.startsWith(pattern)) {
+              targetPath = importPath.replace(pattern, replacement);
+              break;
+            }
+          }
         }
-
         hasChanges = true;
         const newImport = `from "${targetPath}"`;
         changes.push({ from: match, to: newImport });

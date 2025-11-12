@@ -1,5 +1,5 @@
 /**
- * fare-privy-core - v1.1.0 - Streamlined Package
+ * fare-privy-core - v1.2.0 - Streamlined Package
  * This package exports core functionality without external app dependencies.
  */
 
@@ -9,14 +9,17 @@ export { PrivyProvider, type PrivyProviderProps } from "./PrivyProviderTest.js";
 // ✅ CORE FUNCTIONALITY - Working exports
 export * from "./farePrivy/store/switchWallet.js";
 
+// ❌ REMOVED - Had too many external dependencies
+// export * from "./farePrivy/modals/index.js";
+
 /**
- * ✅ PRODUCTION READY - v1.1.0:
+ * ✅ PRODUCTION READY - v1.2.0:
  *
- * ✅ Dependencies: All external dependencies properly configured
+ * ✅ Dependencies: Tightened version constraints for stability
  * ✅ Build System: TypeScript compilation working flawlessly
  * ✅ Test Suite: Complete coverage with all tests passing
  * ✅ Exports: Clean API surface without external app dependencies
- * ✅ Documentation: README, LICENSE, and inline docs complete
+ * ✅ Package Size: Reduced by removing heavy modal dependencies
  */
 
 /**
