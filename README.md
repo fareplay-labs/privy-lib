@@ -2,17 +2,20 @@
 
 A lightweight React library for Privy authentication and wallet management, designed for casino and gaming applications on **Ethereum and Solana**.
 
-## 🚀 Current Features (v1.3.0)
+## 🚀 Current Features (v1.7.0)
 
-- **🔐 Real Privy Auth**: Full Privy authentication integration
-- **🎰 Casino-Ready**: Pre-configured for casino/gaming use cases
+- **🔐 Real Privy Auth**: Full Privy authentication integration with login/logout
+- **🎰 Casino-Ready**: Pre-configured for casino/gaming use cases  
 - **⛓️ Multi-Chain**: Support for both Ethereum and Solana networks
-- **💼 Wallet State**: Valtio-based wallet switching state management
+- **� Balance Checking**: Native currency balance fetching (ETH/SOL)
+- **�💼 Wallet State**: Valtio-based wallet switching state management
 - **🎨 Themeable**: Customize colors and branding per casino
-- **🪝 Simple Hooks**: 3 dependency-free hooks for wallet operations
+- **🪝 Complete Hooks**: 5 dependency-free hooks including balance checking
+- **🚪 Login/Logout**: Easy authentication control for casino entry/exit
 - **⚡ TypeScript**: Full TypeScript support with type declarations
-- **🧪 Tested**: Complete test suite
-- **📦 Lightweight**: Minimal dependencies, focused API
+- **🧪 Tested**: Complete test suite with 17 passing tests
+- **📦 Optimized**: Streamlined codebase with unused files removed
+- **🗂️ Clean**: Minimal dependencies, focused API
 
 ## 📦 Installation
 
@@ -43,7 +46,8 @@ npm install fare-privy-core @privy-io/react-auth styled-components@^5.3.0 valtio
 import { 
   PrivyProvider,
   useConnectedWallets,
-  useIsAuthenticated
+  useIsAuthenticated,
+  useWalletBalance
 } from 'fare-privy-core';
 
 function App() {
@@ -192,7 +196,28 @@ function MultiChainCasino() {
 
 ## 🪝 Using Wallet Hooks
 
-Three simple, **dependency-free** hooks to access wallet data in your casino:
+Four simple, **dependency-free** hooks to access wallet data and control authentication in your casino:
+
+### `useAuthActions()` - Login & Logout Control
+
+```tsx
+import { useAuthActions } from 'fare-privy-core';
+
+function CasinoEntry() {
+  const { login, logout, isAuthenticated, isReady } = useAuthActions();
+
+  if (!isAuthenticated) {
+    return <button onClick={login}>🎰 Enter Casino</button>;
+  }
+
+  return (
+    <div>
+      <span>Welcome to the Casino!</span>
+      <button onClick={logout}>Exit</button>
+    </div>
+  );
+}
+```
 
 ### `useConnectedWallets()` - Get all wallet info
 
@@ -244,9 +269,60 @@ function ProtectedGame() {
 }
 ```
 
+### `useWalletBalance()` - Get native currency balances
+
+```tsx
+import { useWalletBalance } from 'fare-privy-core';
+
+function WalletBalanceDisplay() {
+  const { 
+    ethereumBalance, 
+    solanaBalance, 
+    loading, 
+    error, 
+    refreshBalances 
+  } = useWalletBalance();
+
+  if (loading) return <div>Loading balances...</div>;
+  if (error) return <div>Error: {error}</div>;
+
+  return (
+    <div>
+      <p>ETH Balance: {ethereumBalance || "0.00"} ETH</p>
+      <p>SOL Balance: {solanaBalance || "0.00"} SOL</p>
+      <button onClick={refreshBalances}>Refresh</button>
+    </div>
+  );
+}
+```
+
 📖 **[See complete hook documentation →](./HOOKS.md)**
 
-## 📚 API Reference
+## � Changelog
+
+### v1.7.0 (Latest)
+- **💰 Added**: useWalletBalance hook for native currency balance checking
+- **⛓️ Enhanced**: Support for ETH and SOL balance fetching via RPC calls
+- **⚡ Improved**: Real-time balance updates with loading states and error handling
+- **🔄 Added**: Manual balance refresh functionality
+- **🧪 Tested**: All 17 tests passing including new balance functionality
+
+### v1.6.0
+- **🗂️ Optimized**: Removed unused files and dependencies
+- **🧹 Cleaned**: Streamlined codebase for better performance
+- **📦 Smaller**: Reduced package bloat while maintaining all functionality
+- **✅ Tested**: All 17 tests passing after cleanup
+- **🔧 Fixed**: Resolved circular import issues in useWallets.ts
+
+### v1.5.0
+- **🪝 Added**: useAuthActions hook for login/logout control
+- **🚪 Enhanced**: Complete authentication management for casino apps
+
+### v1.4.0  
+- **🎰 Added**: Four dependency-free wallet hooks
+- **🔗 Enhanced**: Multi-chain support for Ethereum and Solana
+
+## �📚 API Reference
 
 ### PrivyProvider
 

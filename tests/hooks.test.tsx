@@ -8,6 +8,7 @@ import {
   useWalletAddresses,
   useIsAuthenticated,
   useAuthActions,
+  useWalletBalance,
 } from "../hooks/useWallets";
 
 // Mock Privy
@@ -43,6 +44,7 @@ function TestComponent() {
   const { primaryEthereumAddress } = useWalletAddresses();
   const { isAuthenticated: authCheck } = useIsAuthenticated();
   const { login, logout, isReady } = useAuthActions();
+  const { ethereumBalance, solanaBalance, loading, error } = useWalletBalance();
 
   return (
     <div>
@@ -55,8 +57,15 @@ function TestComponent() {
       <span data-testid="eth-address">{primaryEthereumAddress || "none"}</span>
       <span data-testid="auth-check">{authCheck ? "yes" : "no"}</span>
       <span data-testid="login-ready">{isReady ? "yes" : "no"}</span>
-      <span data-testid="has-login">{typeof login === 'function' ? "yes" : "no"}</span>
-      <span data-testid="has-logout">{typeof logout === 'function' ? "yes" : "no"}</span>
+      <span data-testid="has-login">
+        {typeof login === "function" ? "yes" : "no"}
+      </span>
+      <span data-testid="has-logout">
+        {typeof logout === "function" ? "yes" : "no"}
+      </span>
+      <span data-testid="ethereum-balance">{ethereumBalance || "loading"}</span>
+      <span data-testid="solana-balance">{solanaBalance || "loading"}</span>
+      <span data-testid="balance-loading">{loading ? "yes" : "no"}</span>
     </div>
   );
 }

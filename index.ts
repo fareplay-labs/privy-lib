@@ -1,5 +1,5 @@
 /**
- * fare-privy-core - v1.3.0 - Streamlined Package
+ * fare-privy-core - v1.6.0 - Streamlined Package
  * This package exports core functionality without external app dependencies.
  */
 
@@ -15,19 +15,22 @@ export {
   useWalletAddresses,
   useIsAuthenticated,
   useAuthActions,
+  useWalletBalance,
 } from "./hooks/useWallets.js";
 
 // ❌ REMOVED - Had too many external dependencies
 // export * from "./farePrivy/modals/index.js";
 
 /**
- * ✅ PRODUCTION READY - v1.3.0:
+ * ✅ PRODUCTION READY - v1.7.0:
  *
  * ✅ Dependencies: Tightened version constraints for stability
  * ✅ Build System: TypeScript compilation working flawlessly
  * ✅ Test Suite: Complete coverage with all tests passing
  * ✅ Exports: Clean API surface without external app dependencies
- * ✅ Package Size: Ultra-lean - removed all UI components with external dependencies
+ * ✅ Balance Checking: Native currency balance fetching for ETH/SOL
+ * ✅ Package Size: Ultra-lean - optimized with unnecessary files removed
+ * ✅ Code Quality: Cleaned up unused dependencies and components
  */
 
 /**
@@ -39,6 +42,7 @@ export {
  *    - useWalletAddresses: Get Ethereum & Solana addresses
  *    - useIsAuthenticated: Check authentication status
  *    - useAuthActions: Login/logout functions for casino entry
+ *    - useWalletBalance: Get native currency balances (ETH/SOL)
  *
  * 💡 Configuration:
  * Users should provide their own Privy configuration.
@@ -53,7 +57,8 @@ export {
  *   useConnectedWallets,
  *   useWalletAddresses,
  *   useIsAuthenticated,
- *   useAuthActions
+ *   useAuthActions,
+ *   useWalletBalance
  * } from 'fare-privy-core';
  *
  * // 1. Wrap your app
@@ -74,6 +79,7 @@ export {
  *   const { primarySolanaAddress } = useWalletAddresses();
  *   const { isAuthenticated } = useIsAuthenticated();
  *   const { login, logout } = useAuthActions();
+ *   const { ethereumBalance, solanaBalance, loading } = useWalletBalance();
  *
  *   if (!isAuthenticated) {
  *     return <button onClick={login}>🎰 Enter Casino</button>;
@@ -82,6 +88,14 @@ export {
  *   return (
  *     <div>
  *       <span>Welcome {primaryWallet?.address}</span>
+ *       {loading ? (
+ *         <span>Loading balance...</span>
+ *       ) : (
+ *         <div>
+ *           {solanaBalance && <span>SOL: {solanaBalance}</span>}
+ *           {ethereumBalance && <span>ETH: {ethereumBalance}</span>}
+ *         </div>
+ *       )}
  *       <button onClick={logout}>Exit</button>
  *     </div>
  *   );
