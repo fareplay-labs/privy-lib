@@ -1,6 +1,6 @@
 {
   "name": "fare-privy-core",
-  "version": "1.7.0",
+  "version": "1.7.1",
   "description": "A comprehensive React library for Privy authentication and wallet management with casino gaming features including balance checking",
   "keywords": [
     "privy",

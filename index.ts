@@ -1,5 +1,5 @@
 /**
- * fare-privy-core - v1.6.0 - Streamlined Package
+ * fare-privy-core - v1.7.1 - Streamlined Package with Balance Checking
  * This package exports core functionality without external app dependencies.
  */
 
@@ -22,7 +22,7 @@ export {
 // export * from "./farePrivy/modals/index.js";
 
 /**
- * ✅ PRODUCTION READY - v1.7.0:
+ * ✅ PRODUCTION READY - v1.7.1:
  *
  * ✅ Dependencies: Tightened version constraints for stability
  * ✅ Build System: TypeScript compilation working flawlessly
