@@ -1,267 +1,112 @@
 # @zynkah/privy-lib
 
-A comprehensive React library for Privy authentication and wallet management with casino gaming features. This library provides a complete authentication and wallet management system built around Privy Auth with custom casino configurations and Smart Wallet support.
+A lightweight React library for wallet selection and wallet overview UI components.  
+Designed for easy integration, full portability, and consumer-provided icons and styles.
 
-## 🚀 Features
+---
 
-- **🔐 Authentication**: Complete Privy Auth integration with casino-specific configurations
-- **💼 Wallet Management**: Advanced wallet operations with smart wallet support
-- **🎮 Casino Integration**: Gaming-specific authentication and wallet features
-- **⚡ Smart Wallets**: Built-in support for Biconomy and other smart wallet providers
-- **🎨 UI Components**: Pre-built React components for wallet operations
-- **🔧 Configuration**: Flexible configuration system with builder patterns
-- **📱 Responsive**: Mobile-first design for wallet interactions
+## ✨ Features
 
-## 📦 Installation
+- **SelectWalletModal**: Animated, responsive modal for selecting and linking wallets.
+- **WalletOverview**: Displays the active wallet’s name and icon.
+- **No asset or config imports**: Consumers provide their own icons and wallet data.
+- **Styled with [styled-components](https://styled-components.com/)**
 
-```bash
-npm install @zynkah/privy-lib
-```
+---
 
-### Peer Dependencies
-
-Make sure you have the required peer dependencies installed:
+## 🚀 Installation
 
 ```bash
-npm install react react-dom @privy-io/react-auth styled-components framer-motion valtio
+npm install @zynkah/privy-lib styled-components framer-motion
 ```
 
-## 🔧 Quick Setup
+---
 
-### Basic Setup
+## 🧩 Usage
+
+### SelectWalletModal
 
 ```tsx
-import React from 'react'
-import { PrivyProvider } from '@zynkah/privy-lib'
+import { SelectWalletModal } from "@zynkah/privy-lib";
 
-function App() {
-  return (
-    <PrivyProvider appId="your-privy-app-id">
-      {/* Your app content */}
-    </PrivyProvider>
-  )
-}
-
-export default App
+<SelectWalletModal
+  isOpen={isWalletModalOpen}
+  onClose={() => setWalletModalOpen(false)}
+  wallets={wallets} // Array of wallet objects
+  appWalletClientType={appWalletClientType}
+  setAppWalletClientType={setAppWalletClientType}
+  linkWalletToUser={linkWalletToUser}
+  embeddedWalletLinks={embeddedWalletLinks}
+  icons={{
+    dragBar: "/icons/drag-bar.svg",
+    privyIcon: "/icons/privy.svg",
+    caretDown: "/icons/caret-down.svg",
+    linkWallet: "/icons/link-wallet.svg",
+  }}
+  isMobileScreen={isMobileScreen}
+/>
 ```
-
-### Advanced Configuration
-
-```tsx
-import React from 'react'
-import { PrivyProvider, ConfigBuilder } from '@zynkah/privy-lib'
-
-const customConfig = new ConfigBuilder()
-  .setAppearance({
-    theme: 'dark',
-    accentColor: '#6366f1'
-  })
-  .setLoginMethods(['email', 'wallet'])
-  .setEmbeddedWallets({ createOnLogin: 'users-without-wallets' })
-  .build()
-
-function App() {
-  return (
-    <PrivyProvider 
-      appId="your-privy-app-id"
-      config={customConfig}
-    >
-      {/* Your app content */}
-    </PrivyProvider>
-  )
-}
-```
-
-## 🎯 Core Components
-
-### Authentication Provider
-
-```tsx
-import { PrivyProvider } from '@zynkah/privy-lib'
-
-<PrivyProvider
-  appId="your-app-id"
-  clientId="your-client-id" // optional
-  config={customConfig} // optional
-  smartWalletConfig={smartWalletConfig} // optional
-  disableSmartWallets={false} // optional
->
-  <YourApp />
-</PrivyProvider>
-```
-
-### Casino Auth Provider
-
-```tsx
-import { CasinoAuthProvider, useCasinoAuth } from '@zynkah/privy-lib'
-
-function CasinoApp() {
-  return (
-    <CasinoAuthProvider config={casinoConfig}>
-      <GameInterface />
-    </CasinoAuthProvider>
-  )
-}
-
-function GameInterface() {
-  const { user, login, logout } = useCasinoAuth()
-  
-  return (
-    <div>
-      {user ? (
-        <button onClick={logout}>Logout</button>
-      ) : (
-        <button onClick={login}>Login to Play</button>
-      )}
-    </div>
-  )
-}
-```
-
-## 🪝 Hooks
-
-### useActiveWallet
-
-```tsx
-import { useActiveWallet } from '@zynkah/privy-lib'
-
-function WalletInfo() {
-  const { wallet, address, chainId, switchWallet } = useActiveWallet()
-  
-  return (
-    <div>
-      <p>Address: {address}</p>
-      <p>Chain: {chainId}</p>
-      <button onClick={() => switchWallet()}>Switch Wallet</button>
-    </div>
-  )
-}
-```
-
-## 🎨 UI Components
 
 ### WalletOverview
 
 ```tsx
-import { WalletOverview } from '@zynkah/privy-lib'
+import { WalletOverview } from "@zynkah/privy-lib";
 
-function Dashboard() {
-  return (
-    <div>
-      <h1>My Dashboard</h1>
-      <WalletOverview />
-    </div>
-  )
-}
+<WalletOverview
+  activeWallet={{
+    meta: { name: "Privy Wallet", icon: "/icons/privy.svg" }
+  }}
+  onClick={() => setWalletModalOpen(true)}
+  fallbackIcon="/icons/default-wallet.svg"
+  isTabletScreen={false}
+  isMobileScreen={true}
+/>
 ```
 
-## ⚙️ Configuration
+---
 
-### ConfigBuilder
+## 📝 Props
 
-```tsx
-import { ConfigBuilder } from '@zynkah/privy-lib'
+### SelectWalletModal
 
-const config = new ConfigBuilder()
-  .setAppearance({
-    theme: 'dark',
-    accentColor: '#6366f1',
-    logo: 'https://your-logo-url.com/logo.png'
-  })
-  .setLoginMethods(['email', 'google', 'wallet'])
-  .setEmbeddedWallets({
-    createOnLogin: 'users-without-wallets',
-    requireUserPasswordOnCreate: true
-  })
-  .setLegalAcceptanceRequired(true)
-  .build()
-```
+| Prop                  | Type                                                                 | Description                                                                                 |
+|-----------------------|----------------------------------------------------------------------|---------------------------------------------------------------------------------------------|
+| `isOpen`              | `boolean`                                                            | Controls modal visibility.                                                                  |
+| `onClose`             | `() => void`                                                         | Function to close the modal.                                                                |
+| `wallets`             | `Array<{ address, meta, walletClientType, linked }>`                 | List of wallet objects to display.                                                          |
+| `appWalletClientType` | `string`                                                             | The currently selected wallet client type.                                                  |
+| `setAppWalletClientType` | `(type: string) => void`                                          | Function to set the selected wallet client type.                                            |
+| `linkWalletToUser`    | `() => Promise<void>`                                                | Function to link a new wallet to the user.                                                  |
+| `embeddedWalletLinks` | `Array<{ type, address?, number? }>`                                 | (Optional) List of embedded wallet links for the privy wallet.                              |
+| `icons`               | `{ dragBar, privyIcon, caretDown, linkWallet: string }`              | Object containing icon URLs or paths for modal UI.                                          |
+| `isMobileScreen`      | `boolean`                                                            | (Optional) If true, enables mobile-specific modal behavior and layout.                      |
 
-## 📚 API Reference
+### WalletOverview
 
-```tsx
-// Main exports
-export {
-  PrivyProvider,
-  CasinoAuthProvider,
-  ConfigBuilder,
-  ConfigManager
-} from '@zynkah/privy-lib'
+| Prop            | Type                                  | Description                                                      |
+|-----------------|---------------------------------------|------------------------------------------------------------------|
+| `activeWallet`  | `{ meta: { name: string, icon?: string } }` | The wallet object with metadata including name and optional icon URL. |
+| `onClick`       | `() => void`                          | Optional click handler for the component.                        |
+| `fallbackIcon`  | `string`                              | Optional fallback icon URL if `activeWallet.meta.icon` is not provided. |
+| `isTabletScreen`| `boolean`                             | Optional. If true, hides the wallet name on tablet screens.      |
+| `isMobileScreen`| `boolean`                             | Optional. If true, shows the wallet name on mobile screens.      |
 
-// Hooks
-export {
-  useActiveWallet,
-  useAdaptiveWallet,
-  useAuthWallet,
-  useBlockExplorerUrl,
-  useIsUserAuthenticated,
-  usePrivyService,
-  useCasinoAuth
-} from '@zynkah/privy-lib'
+---
 
-// Components
-export {
-  SelectWalletModal,
-  WalletOverview,
-  FundWalletModal,
-  WithdrawPrivyModal
-} from '@zynkah/privy-lib'
-```
+## 🎨 Styling & Customization
 
-## 🔨 Development
+- Uses `styled-components` for all styles.
+- Consumers can override styles via a theme or by extending the styled components.
+- No direct asset imports; all icons are provided by the consumer.
 
-### Building the Library
+---
 
-```bash
-# Build for production
-npm run build
+## 📋 License
 
-# Build and watch for changes
-npm run dev
+MIT
 
-# Type checking
-npm run type-check
-
-# Clean build artifacts
-npm run clean
-```
-
-### Project Structure
-
-```
-@zynkah/privy-lib/
-├── farePrivy/               # Main library code
-│   ├── components/          # React components
-│   ├── hooks/              # Custom hooks
-│   ├── config/             # Configuration system
-│   ├── modals/             # Modal components
-│   ├── lib/                # Core libraries
-│   └── utility/            # Utility components
-├── dist/                   # Built output
-└── index.ts               # Main entry point
-```
-
-## 📝 License
-
-ISC License - see [LICENSE](./LICENSE) file for details.
+---
 
 ## 🤝 Contributing
 
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
-
-## 📞 Support
-
-- 📧 Email: [Create an issue](https://github.com/Zynkah/privy-lib/issues)
-- 📖 Documentation: [GitHub README](https://github.com/Zynkah/privy-lib#readme)
-- 🐛 Bug Reports: [GitHub Issues](https://github.com/Zynkah/privy-lib/issues)
-
-## 🏆 Acknowledgments
-
-- Built with [Privy](https://privy.io/) authentication
-- Powered by [React](https://reactjs.org/)
-- Styled with [styled-components](https://styled-components.com/)
-- Animated with [Framer Motion](https://framer.com/motion/)
+Pull requests and issues are welcome!
