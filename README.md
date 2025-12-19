@@ -1,32 +1,6 @@
-# fare-privy-core
+@zynkah/privy-lib
 
-<<<<<<< HEAD
-A lightweight React library for wallet selection and wallet overview UI components.  
-Designed for easy integration, full portability, and consumer-provided icons and styles.
-
----
-
-## ✨ Features
-=======
-A lightweight React library for Privy authentication and wallet management, designed for casino and gaming applications on **Ethereum and Solana**.
-
-## 🚀 Current Features (v1.7.7)
-
-- **🔐 Real Privy Auth**: Full Privy authentication integration with login/logout
-- **🎰 Casino-Ready**: Pre-configured for casino/gaming use cases  
-- **⛓️ Multi-Chain**: Support for both Ethereum and Solana networks
-- **💰 Reliable Balance Checking**: Simplified balance fetching based on proven working patterns (ETH/SOL)
-- **🎯 Active Wallet Management**: useActiveWallet hook based on successful casino implementations
-- **🔗 Solana Helper Functions**: Easy Solana connector setup with TypeScript compatibility
-- **💼 Wallet State**: Valtio-based wallet switching state management
-- **🎨 Themeable**: Customize colors and branding per casino
-- **🪝 Micro Hooks**: 6 focused hooks with single responsibilities and proven reliability
-- **🚪 Login/Logout**: Easy authentication control for casino entry/exit
-- **⚡ TypeScript**: Full TypeScript support with type declarations
-- **🧪 Tested**: 3/4 test suites passing with reliable integration tests
-- **📦 Tree Shakable**: Import only what you need for smaller bundle sizes
-- **🗂️ Clean**: Minimal dependencies, proven patterns
->>>>>>> fb7640de89ab4d90f33248c3264f6a50a43b4008
+A lightweight React library for wallet selection and wallet overview UI components. Designed for easy integration, full portability, and consumer-provided icons and styles. Includes:
 
 - **SelectWalletModal**: Animated, responsive modal for selecting and linking wallets.
 - **WalletOverview**: Displays the active wallet’s name and icon.
@@ -38,13 +12,6 @@ A lightweight React library for Privy authentication and wallet management, desi
 ## 🚀 Installation
 
 ```bash
-<<<<<<< HEAD
-npm install @zynkah/privy-lib styled-components framer-motion
-```
-
----
-
-## 🧩 Usage
 
 ### SelectWalletModal
 

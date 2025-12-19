@@ -1,8 +1,7 @@
 /**
-npm  * fare-privy-core - v1.7.6 - Reliable Micro Hooks
+ * fare-privy-core - v1.7.6 - Reliable Micro Hooks
  * Proven wallet patterns with simplified balance fetching and focused micro-hooks architecture.
  */
-
 // ✅ CURRENT EXPORTS - Available Now
 export { PrivyProvider, type PrivyProviderProps } from "./PrivyProviderTest";
 
@@ -26,7 +25,7 @@ export {
   useIsAuthenticated,
   useAuthActions,
   useWalletBalance,
-} from "./hooks/index";
+} from "./src/hooks/index";
 
 // ❌ REMOVED - Had too many external dependencies
 // export * from "./farePrivy/modals/index.js";
@@ -68,62 +67,7 @@ export {
 
 // Export utilities
 // export * from './farePrivy/utility'
+
 /**
  * 💡 Usage:
- * ```typescript
- * import {
- *   PrivyProvider,
- *   useConnectedWallets,
- *   useWalletAddresses,
- *   useIsAuthenticated,
- *   useAuthActions,
- *   useWalletBalance,
- *   disableSolanaConnectors // Helper to fix Solana connector errors
- * } from 'fare-privy-core';
- *
- * // 1. Wrap your app (Ethereum only - recommended)
- * function App() {
- *   return (
- *     <PrivyProvider
- *       appId="your-privy-app-id"
- *       config={{
- *         walletChainType: 'ethereum-only',
- *         externalWallets: {
- *           solana: disableSolanaConnectors() // Prevents Solana errors
- *         }
- *       }}
- *     >
- *       <YourCasino />
- *     </PrivyProvider>
- *   );
- * }
- *
- * // 2. Use hooks in your casino components
- * function YourCasino() {
- *   const { primaryWallet } = useConnectedWallets();
- *   const { primarySolanaAddress } = useWalletAddresses();
- *   const { isAuthenticated } = useIsAuthenticated();
- *   const { login, logout } = useAuthActions();
- *   const { ethereumBalance, solanaBalance, loading } = useWalletBalance();
- *
- *   if (!isAuthenticated) {
- *     return <button onClick={login}>🎰 Enter Casino</button>;
- *   }
- *
- *   return (
- *     <div>
- *       <span>Welcome {primaryWallet?.address}</span>
- *       {loading ? (
- *         <span>Loading balance...</span>
- *       ) : (
- *         <div>
- *           {solanaBalance && <span>SOL: {solanaBalance}</span>}
- *           {ethereumBalance && <span>ETH: {ethereumBalance}</span>}
- *         </div>
- *       )}
- *       <button onClick={logout}>Exit</button>
- *     </div>
- *   );
- * }
- * ```
  */

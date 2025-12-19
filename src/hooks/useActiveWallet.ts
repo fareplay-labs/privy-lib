@@ -24,9 +24,22 @@ export const useActiveWallet = () => {
   );
 
   // Previous stable pattern: select first linked wallet as active
+  // Type guard for IActiveWallet
+  function isActiveWallet(obj: any): obj is IActiveWallet {
+    return (
+      obj &&
+      typeof obj.getEthereumProvider === "function" &&
+      // If you need Solana, you can add:
+      (typeof obj.getSolanaProvider === "function" ||
+        typeof obj.getSolanaProvider === "undefined")
+    );
+  }
+
   const activeWallet = useMemo(() => {
     if (!ready || !authenticated || wallets.length === 0) return null;
-    return wallets[0] as IActiveWallet;
+    const selectedWallet = wallets[0];
+    // Only return if it passes the type guard
+    return isActiveWallet(selectedWallet) ? selectedWallet : null;
   }, [ready, authenticated, wallets]);
 
   const walletAddress = useMemo(

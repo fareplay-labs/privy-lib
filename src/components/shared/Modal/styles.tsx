@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import styled from "styled-components";
 import { Button } from "../Button";
 
-export const SModalOverlayContainer = styled(motion.div)`
+export const SModalOverlayContainer: any = styled(motion.div)`
   position: fixed;
   inset: 0;
   background-color: rgba(0, 0, 0, 0.8);
@@ -17,7 +17,7 @@ export const SModalOverlayContainer = styled(motion.div)`
   }
 `;
 
-export const SModalWrapper = styled(motion.div)`
+export const SModalWrapper: any = styled(motion.div)`
   position: fixed;
   top: 50%;
   left: 50%;

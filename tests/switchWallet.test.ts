@@ -1,4 +1,4 @@
-import { switchWalletState } from "../farePrivy/store/switchWallet";
+import { switchWalletState } from "../src/store/switchWallet";
 
 describe("switchWallet Store", () => {
   beforeEach(() => {

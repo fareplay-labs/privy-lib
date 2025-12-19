@@ -13,7 +13,7 @@ import {
   useAuthActions,
   useWalletBalance,
   useActiveWallet,
-} from "../hooks/index";
+} from "../src/hooks/index";
 
 // Mock Privy
 jest.mock("@privy-io/react-auth", () => ({
@@ -35,7 +35,7 @@ jest.mock("@privy-io/react-auth", () => ({
         }),
       },
       {
-        address: "0x123...abc",
+        address: "0x123...def",
         connectorType: "injected",
         linked: true,
         chainId: "eip155:1",

@@ -9,7 +9,7 @@ export const deviceBP = {
   sm: "max-width: 760px",
 };
 
-export const SSelectWalletModal = styled(motion.div)`
+export const SSelectWalletModal: any = styled(motion.div)`
   position: fixed;
   display: flex;
   align-items: center;
@@ -28,7 +28,7 @@ export const SSelectWalletModal = styled(motion.div)`
   }
 `;
 
-export const SGradientWalletModalContent = styled(motion.div)`
+export const SGradientWalletModalContent: any = styled(motion.div)`
   padding: 1px;
   border-radius: 6px;
   ${FARE_GRADIENT}

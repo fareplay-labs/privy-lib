@@ -6,17 +6,22 @@
 import { useMemo, useEffect } from "react";
 import { useConnectedWallets } from "./useConnectedWallets";
 
+// Define a wallet shape for type safety
+interface Wallet {
+  chainType?: string;
+  walletClientType?: string;
+  connectorType?: string;
+  address: string;
+}
+
 export const useWalletAddresses = () => {
   const { connectedWallets } = useConnectedWallets();
 
   const ethereumAddresses = useMemo(() => {
-    return connectedWallets
+    return (connectedWallets as Wallet[])
       .filter((w) => {
         // Multiple ways to check for Ethereum wallets
-        const chainType = (w as any).chainType;
-        const walletClientType = (w as any).walletClientType;
-        const connectorType = w.connectorType;
-
+        const { chainType, walletClientType, connectorType } = w;
         return (
           chainType === "ethereum" ||
           walletClientType === "ethereum" ||
@@ -29,24 +34,13 @@ export const useWalletAddresses = () => {
   }, [connectedWallets]);
 
   const solanaAddresses = useMemo(() => {
-    return connectedWallets
+    return (connectedWallets as Wallet[])
       .filter((w) => {
-        const chainType = (w as any).chainType;
-        const walletClientType = (w as any).walletClientType;
-
+        const { chainType, walletClientType } = w;
         return chainType === "solana" || walletClientType === "solana";
       })
       .map((w) => w.address);
   }, [connectedWallets]);
-
-  // Debug logging
-  useEffect(() => {
-    if (process.env.NODE_ENV === "development") {
-      console.log("[fare-privy-core] Connected wallets:", connectedWallets);
-      console.log("[fare-privy-core] Ethereum addresses:", ethereumAddresses);
-      console.log("[fare-privy-core] Solana addresses:", solanaAddresses);
-    }
-  }, [connectedWallets, ethereumAddresses, solanaAddresses]);
 
   return {
     /** All Ethereum wallet addresses */

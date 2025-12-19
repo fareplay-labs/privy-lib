@@ -23,37 +23,43 @@ export interface ButtonProps extends HTMLMotionProps<"button"> {
   theme?: any; // Allow theme override for npm consumers
 }
 
-export const Button = ({
-  buttonType,
-  disabled,
-  isLoading = false,
-  loadingText = "Loading",
-  children,
-  isMinified = false,
-  theme,
-  ...props
-}: ButtonProps) => {
-  // Remove ref from props before spreading into BaseButton to avoid type errors
-  const { ref, ...restProps } = props;
-  return (
-    <BaseButton
-      {...restProps}
-      transition={{ duration: 0.25 }}
-      buttonType={buttonType}
-      disabled={disabled}
-      isLoading={isLoading}
-      $isMinified={isMinified}
-      theme={theme}
-    >
-      <ButtonContentWrapper>
-        {isLoading && (
-          <LoadingBar $side="left" $buttonType={buttonType} theme={theme} />
-        )}
-        <div>{isLoading ? loadingText : children}</div>
-        {isLoading && (
-          <LoadingBar $side="right" $buttonType={buttonType} theme={theme} />
-        )}
-      </ButtonContentWrapper>
-    </BaseButton>
-  );
-};
+import React from "react";
+
+export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
+  (
+    {
+      buttonType,
+      disabled,
+      isLoading = false,
+      loadingText = "Loading",
+      children,
+      isMinified = false,
+      theme,
+      ...props
+    },
+    ref
+  ) => {
+    return (
+      <BaseButton
+        {...props}
+        ref={ref}
+        transition={{ duration: 0.25 }}
+        buttonType={buttonType}
+        disabled={disabled}
+        isLoading={isLoading}
+        $isMinified={isMinified}
+        theme={theme}
+      >
+        <ButtonContentWrapper>
+          {isLoading && (
+            <LoadingBar $side="left" $buttonType={buttonType} theme={theme} />
+          )}
+          <div>{isLoading ? loadingText : children}</div>
+          {isLoading && (
+            <LoadingBar $side="right" $buttonType={buttonType} theme={theme} />
+          )}
+        </ButtonContentWrapper>
+      </BaseButton>
+    );
+  }
+);

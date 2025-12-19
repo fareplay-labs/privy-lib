@@ -1,8 +1,8 @@
 import React from "react";
-import { render, screen, fireEvent, act } from "@testing-library/react";
+import { render, screen, act } from "@testing-library/react";
 import { useSnapshot } from "valtio";
 import { PrivyProvider } from "../PrivyProviderTest";
-import { switchWalletState } from "../farePrivy/store/switchWallet";
+import { switchWalletState } from "../src/store/switchWallet";
 
 // Mock Privy
 jest.mock("@privy-io/react-auth", () => ({
@@ -20,14 +20,14 @@ jest.mock("@privy-io/react-auth/smart-wallets", () => ({
 describe("Package Integration Tests", () => {
   it("can use both exports together", () => {
     const TestComponent = () => {
+      const snap = useSnapshot(switchWalletState);
       return (
         <div>
           <span data-testid="wallet-state">
-            Wallet Modal Open:{" "}
-            {switchWalletState.isWalletModalOpen ? "Yes" : "No"}
+            Wallet Modal Open: {snap.isWalletModalOpen ? "Yes" : "No"}
           </span>
           <span data-testid="connector-type">
-            Connector Type: {switchWalletState.selectedConnectorType || "None"}
+            Connector Type: {snap.selectedConnectorType || "None"}
           </span>
         </div>
       );
@@ -62,13 +62,13 @@ describe("Package Integration Tests", () => {
 
   it("handles complex integration scenarios", () => {
     const ComplexComponent = () => {
-      const modalOpen = switchWalletState.isWalletModalOpen;
-      const connectorType = switchWalletState.selectedConnectorType;
-
+      const snap = useSnapshot(switchWalletState);
       return (
         <div data-testid="complex-component">
-          <span>Modal Status: {modalOpen ? "Open" : "Closed"}</span>
-          <span>Connector: {connectorType || "Unset"}</span>
+          <span>
+            Modal Status: {snap.isWalletModalOpen ? "Open" : "Closed"}
+          </span>
+          <span>Connector: {snap.selectedConnectorType || "Unset"}</span>
         </div>
       );
     };
@@ -86,12 +86,11 @@ describe("Package Integration Tests", () => {
   it("wallet state properties can be modified", () => {
     // Test that the state is reactive and can be updated
     const StateComponent = () => {
+      const snap = useSnapshot(switchWalletState);
       return (
         <div>
           <span data-testid="modal-state">
-            {switchWalletState.isWalletModalOpen
-              ? "Modal Open"
-              : "Modal Closed"}
+            {snap.isWalletModalOpen ? "Modal Open" : "Modal Closed"}
           </span>
           <button
             onClick={() => {
@@ -105,7 +104,6 @@ describe("Package Integration Tests", () => {
         </div>
       );
     };
-
     render(
       <PrivyProvider appId="state-test">
         <StateComponent />
@@ -116,9 +114,10 @@ describe("Package Integration Tests", () => {
     expect(screen.getByText(/Modal Closed/)).toBeInTheDocument();
 
     // Modify state
-    switchWalletState.isWalletModalOpen = true;
-    switchWalletState.selectedConnectorType = "metamask";
-
+    act(() => {
+      switchWalletState.isWalletModalOpen = true;
+      switchWalletState.selectedConnectorType = "metamask";
+    });
     // Verify state changed
     expect(switchWalletState.isWalletModalOpen).toBe(true);
     expect(switchWalletState.selectedConnectorType).toBe("metamask");

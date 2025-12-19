@@ -13,15 +13,23 @@ export type Breakpoints = Record<string, number>;
  * @param breakpoint - Either a key of the BREAKPOINTS object or a number (pixels)
  * @param BREAKPOINTS - The breakpoints object to use (must be provided by the consumer)
  */
+
 export const useIsBreakpoint = (
   breakpoint: keyof Breakpoints | number,
   BREAKPOINTS: Breakpoints
 ) => {
-  const isBreakpoint = useMediaQuery(
-    `(max-width: ${
-      typeof breakpoint === "number" ? breakpoint : BREAKPOINTS[breakpoint]
-    }px)`
-  );
+  let value: number;
+  if (typeof breakpoint === "number") {
+    value = breakpoint;
+  } else {
+    value = BREAKPOINTS[breakpoint];
+    if (typeof value !== "number" || isNaN(value)) {
+      throw new Error(
+        `[useIsBreakpoint] Invalid breakpoint key: '${breakpoint}'. Please provide a valid key from BREAKPOINTS.`
+      );
+    }
+  }
+  const isBreakpoint = useMediaQuery(`(max-width: ${value}px)`);
   return useMemo(() => isBreakpoint, [isBreakpoint]);
 };
 
@@ -38,14 +46,24 @@ export const useIsBreakpointHeight = () => {
  * @param breakpoint - Either a key of the BREAKPOINTS object or a number (pixels)
  * @param BREAKPOINTS - The breakpoints object to use (must be provided by the consumer)
  */
+
 export const useIsBreakpointLandscape = (
   breakpoint: keyof Breakpoints | number,
   BREAKPOINTS: Breakpoints
 ) => {
+  let value: number;
+  if (typeof breakpoint === "number") {
+    value = breakpoint;
+  } else {
+    value = BREAKPOINTS[breakpoint];
+    if (typeof value !== "number" || isNaN(value)) {
+      throw new Error(
+        `[useIsBreakpointLandscape] Invalid breakpoint key: '${breakpoint}'. Please provide a valid key from BREAKPOINTS.`
+      );
+    }
+  }
   const isBreakpoint = useMediaQuery(
-    `(max-width: ${
-      typeof breakpoint === "number" ? breakpoint : BREAKPOINTS[breakpoint]
-    }px) and (orientation: landscape)`
+    `(max-width: ${value}px) and (orientation: landscape)`
   );
   return useMemo(() => isBreakpoint, [isBreakpoint]);
 };

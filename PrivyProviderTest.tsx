@@ -1,14 +1,3 @@
-<<<<<<< HEAD
-import React from "react";
-
-export interface PrivyProviderProps {
-  children: React.ReactNode;
-  appId?: string;
-  clientId?: string;
-  config?: any;
-  smartWalletConfig?: any;
-  disableSmartWallets?: boolean;
-=======
 import React, { useMemo } from "react";
 import {
   PrivyProvider as _PrivyProvider,
@@ -92,7 +81,6 @@ export interface PrivyProviderProps {
     logo?: string;
     darkMode?: boolean;
   };
->>>>>>> fb7640de89ab4d90f33248c3264f6a50a43b4008
 }
 
 /**
@@ -116,21 +104,6 @@ export const PrivyProvider: React.FC<PrivyProviderProps> = ({
   clientId,
   config,
   smartWalletConfig,
-<<<<<<< HEAD
-  disableSmartWallets,
-}) => {
-  console.log("PrivyProvider initialized with:", {
-    appId,
-    clientId,
-    hasConfig: !!config,
-    hasSmartWalletConfig: !!smartWalletConfig,
-    disableSmartWallets,
-  });
-
-  // For testing purposes, just render children
-  // In production, this would wrap with actual Privy providers
-  return <div data-testid="privy-provider">{children}</div>;
-=======
   disableSmartWallets = false,
   environment,
   theme,
@@ -187,5 +160,4 @@ export const PrivyProvider: React.FC<PrivyProviderProps> = ({
       </SmartWalletsProvider>
     </_PrivyProvider>
   );
->>>>>>> fb7640de89ab4d90f33248c3264f6a50a43b4008
 };

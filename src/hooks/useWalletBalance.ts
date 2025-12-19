@@ -58,7 +58,7 @@ export function useWalletBalance(): WalletBalance {
       }
 
       // Solana placeholder (Privy doesn't support Solana balances in React SDK yet)
-      setSolanaBalance("0.0000");
+      setSolanaBalance(null);
     } catch (fetchError) {
       console.error("Error fetching wallet balance:", fetchError);
       setError("Failed to fetch balance");
@@ -72,14 +72,79 @@ export function useWalletBalance(): WalletBalance {
 
   // Reset balances when wallet changes
   useEffect(() => {
+    let cancelled = false;
+
+    const safeSetEthereumBalance = (val: string | null) => {
+      if (!cancelled) setEthereumBalance(val);
+    };
+    const safeSetSolanaBalance = (val: string | null) => {
+      if (!cancelled) setSolanaBalance(val);
+    };
+    const safeSetError = (val: string | null) => {
+      if (!cancelled) setError(val);
+    };
+    const safeSetLoading = (val: boolean) => {
+      if (!cancelled) setLoading(val);
+    };
+
+    const fetchBalancesWithCancel = async () => {
+      if (!activeWallet || fetchingRef.current) {
+        return;
+      }
+      fetchingRef.current = true;
+      safeSetLoading(true);
+      safeSetError(null);
+      try {
+        // For Ethereum wallets, try to get balance
+        if (activeWallet.address && activeWallet.getEthereumProvider) {
+          try {
+            const provider = await activeWallet.getEthereumProvider();
+            if (provider && provider.request) {
+              const balance = await provider.request({
+                method: "eth_getBalance",
+                params: [activeWallet.address, "latest"],
+              });
+              const balanceInWei = parseInt(balance, 16);
+              const balanceInEth = (balanceInWei / Math.pow(10, 18)).toFixed(4);
+              safeSetEthereumBalance(balanceInEth);
+            } else {
+              safeSetEthereumBalance("0.0000");
+            }
+          } catch (providerError) {
+            console.log(
+              "Provider balance fetch failed, using placeholder:",
+              providerError
+            );
+            safeSetEthereumBalance("0.0000");
+          }
+        } else {
+          safeSetEthereumBalance(null);
+        }
+        // Solana placeholder
+        safeSetSolanaBalance(null);
+      } catch (fetchError) {
+        console.error("Error fetching wallet balance:", fetchError);
+        safeSetError("Failed to fetch balance");
+        safeSetEthereumBalance(null);
+        safeSetSolanaBalance(null);
+      } finally {
+        safeSetLoading(false);
+        fetchingRef.current = false;
+      }
+    };
+
     if (activeWallet?.address) {
-      fetchBalances();
+      fetchBalancesWithCancel();
     } else {
-      setEthereumBalance(null);
-      setSolanaBalance(null);
-      setError(null);
+      safeSetEthereumBalance(null);
+      safeSetSolanaBalance(null);
+      safeSetError(null);
     }
-  }, [activeWallet?.address, fetchBalances]); // Include fetchBalances since it's stable with useCallback
+
+    return () => {
+      cancelled = true;
+    };
+  }, [activeWallet?.address]);
 
   return {
     ethereumBalance,
