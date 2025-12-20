@@ -1,6 +1,14 @@
-import { AnimatePresence, motion, type Variants } from 'framer-motion'
-import { Button, ButtonEnum } from '../../components/shared/Button'
-import { AccordionContainer, AccordionContent, AccordionCurrencyImgWrapper, AccordionDescription, AccordionHeader, AccordionTitle, ReadMoreButton } from '../styles'
+import { AnimatePresence, motion, type Variants } from "framer-motion";
+import { Button, ButtonEnum } from "../../components/shared/Button";
+import {
+  AccordionContainer,
+  AccordionContent,
+  AccordionCurrencyImgWrapper,
+  AccordionDescription,
+  AccordionHeader,
+  AccordionTitle,
+  ReadMoreButton,
+} from "../styles";
 
 interface FundsAccordionProps {
   title?: string;
@@ -25,9 +33,7 @@ const nextButtonVariant: Variants = {
   initial: { x: 0 },
   animate: { x: 0 },
   hover: { x: [0, 5, 0] },
-}
-
-
+};
 
 export const FundsAccordion: React.FC<FundsAccordionProps> = ({
   title,
@@ -41,9 +47,6 @@ export const FundsAccordion: React.FC<FundsAccordionProps> = ({
   onToggle,
   caretRightIcon,
   caretDownIcon,
-  renderButton,
-  style,
-  className,
 }) => {
   return (
     <AccordionContainer
@@ -63,18 +66,23 @@ export const FundsAccordion: React.FC<FundsAccordionProps> = ({
             : `${(description ?? "").toString().substring(0, 50)}...`}
           <Button
             style={{ border: "none", backgroundColor: "transparent" }}
-            onClick={next}
+            onClick={(e) => {
+              e.stopPropagation();
+              next();
+            }}
             buttonType={ButtonEnum.BASE}
             disabled={false}
           >
-            <motion.img
-              src={caretRightIcon}
-              width={18}
-              initial="initial"
-              animate="animate"
-              whileHover="hover"
-              variants={nextButtonVariant}
-            />
+            {caretRightIcon && (
+              <motion.img
+                src={caretRightIcon}
+                width={18}
+                initial="initial"
+                animate="animate"
+                whileHover="hover"
+                variants={nextButtonVariant}
+              />
+            )}
           </Button>
         </AccordionDescription>
       </AccordionHeader>
@@ -89,13 +97,15 @@ export const FundsAccordion: React.FC<FundsAccordionProps> = ({
             disabled={false}
           >
             {isOpen ? "Read less" : "Read more"}
-            <motion.img
-              src={caretDownIcon}
-              width={18}
-              style={{ verticalAlign: "bottom", marginLeft: "5px" }}
-              animate={{ rotate: isOpen ? -180 : 0 }}
-              transition={{ duration: 0.3 }}
-            />
+            {caretDownIcon && (
+              <motion.img
+                src={caretDownIcon}
+                width={18}
+                style={{ verticalAlign: "bottom", marginLeft: "5px" }}
+                animate={{ rotate: isOpen ? -180 : 0 }}
+                transition={{ duration: 0.3 }}
+              />
+            )}
           </ReadMoreButton>
 
           <AccordionCurrencyImgWrapper>

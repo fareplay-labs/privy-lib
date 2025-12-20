@@ -142,8 +142,7 @@ Displays the active wallet’s name and icon.
 ### Fund Wallet Modal (New)
 
 ```tsx
-import { FundWalletModal } from 'fare-privy-lib/modals/FundWalletModal';
-
+import { FundWalletModal } from 'fare-privy-core/modals/FundWalletModal';
 function App() {
   return (
     <div>

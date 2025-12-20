@@ -31,7 +31,7 @@ export const CardCarousel: React.FC<CardCarouselProps> = ({
   style,
   footer,
 }) => {
-   const { ethereumBalance } = useWalletBalance();
+  const { ethereumBalance } = useWalletBalance();
 
   const cards = useMemo(
     () => [
@@ -41,7 +41,7 @@ export const CardCarousel: React.FC<CardCarouselProps> = ({
         selectedCurrencyBalance={ethereumBalance ?? 0}
       />,
     ],
-    []
+    [ethereumBalance]
   );
   const selectedCardElem = useMemo(() => cards[stepIndex], [cards, stepIndex]);
 

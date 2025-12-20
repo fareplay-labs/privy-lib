@@ -1,6 +1,6 @@
-import styled from 'styled-components'
-import { Button } from '../components/shared/Button'
-import { motion } from 'framer-motion';
+import styled from "styled-components";
+import { Button } from "../components/shared/Button";
+import { motion } from "framer-motion";
 
 export const Overlay = styled.div`
   position: fixed;
@@ -11,7 +11,7 @@ export const Overlay = styled.div`
   justify-content: center;
   align-items: center;
   text-align: justify;
-`
+`;
 
 export const Container = styled.div<{ $maxHeight?: string }>`
   display: flex;
@@ -35,7 +35,7 @@ export const Container = styled.div<{ $maxHeight?: string }>`
 
 export const ContentWrapper = styled.div`
   flex: 1;
-`
+`;
 
 export const SectionDescription = styled.p`
   display: inline-flex;
@@ -46,7 +46,7 @@ export const SectionDescription = styled.p`
   font-family: system-ui, sans-serif;
   margin-block: 0 10px;
   height: 2.5rem;
-`
+`;
 
 export const WithdrawalButton: any = styled(Button)`
   display: flex;
@@ -77,10 +77,9 @@ export const WithdrawalButton: any = styled(Button)`
   span {
     font-family: system-ui, sans-serif;
   }
-`
+`;
 
 export const AccordionContainer: any = styled(motion.div)`
-  text-align: left;
   overflow: hidden;
   background-color: #2c2c2e;
   border-radius: 0.75rem;
@@ -99,14 +98,13 @@ export const AccordionHeader: any = styled(motion.div)`
 `;
 
 export const AccordionCurrencyImgWrapper = styled.div`
-  margin-left: 8px;
   display: inline-flex;
   gap: 8px;
   background-color: rgba(118, 118, 128, 0.18);
   padding: 8px 16px;
   border-radius: 10rem;
   height: 1.25rem;
-  margin: 5px;
+  margin: 5px 5px 5px 8px;
 `;
 
 export const AccordionTitle = styled.div`
@@ -222,8 +220,8 @@ export const BubbleWrapper = styled.div`
   width: fit-content;
   align-items: center;
   justify-content: center;
-     font-size: 14px;
-    line-height: 16px;
+  font-size: 14px;
+  line-height: 16px;
 
   &.arbitrumBubble,
   &.currencyBubble {
@@ -254,7 +252,7 @@ export const DepositContent = styled.div`
   }
 
   @media (max-width: 600px) {
-       font-size: 14px;
+    font-size: 14px;
     line-height: 16px;
     margin-inline: 12px;
     word-wrap: break-word;

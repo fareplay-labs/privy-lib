@@ -29,9 +29,9 @@ export const FundWalletMenu: React.FC<FundWalletMenuProps> = ({
   };
 
   const truncatedDescription = (description: string): string => {
-    return description.substring(0, 50);
+    if (description.length <= 50) return description;
+    return description.substring(0, 50).trim() + "...";
   };
-
   // Hardcoded images for typical exchanges/cards
   const images = [
     "/icons/coinbase.svg",

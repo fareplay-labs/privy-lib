@@ -35,16 +35,16 @@ export const TransferModalFunds: React.FC<TransferModalFundsProps> = ({
   const [balanceDifference, setBalanceDifference] = useState("0.00");
 
   useEffect(() => {
-    if (selectedCurrencyBalance !== prevBalance) {
-      setBalanceDifference(
-        numeral(selectedCurrencyBalance)
-          .subtract(prevBalance || "0")
-          .format("0,0.00")
-      );
+    const currentNum = numeral(selectedCurrencyBalance).value() ?? 0;
+    const prevNum = numeral(prevBalance).value() ?? 0;
+    if (currentNum !== prevNum) {
+      const diff = currentNum - prevNum;
+      // Only show positive differences (deposits)
+      setBalanceDifference(diff > 0 ? numeral(diff).format("0,0.00") : "0.00");
       setPrevBalance(selectedCurrencyBalance);
     }
   }, [selectedCurrencyBalance, prevBalance]);
-
+  
   return (
     <DepositBoxWrapper>
       <DepositTitle>
