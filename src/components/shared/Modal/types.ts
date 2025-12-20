@@ -11,7 +11,7 @@ export interface ModalCardProps {
   setStepIdx?: (idx: number) => void;
   maxHeight?: string;
   style?: React.CSSProperties;
-  closeIcon: any;
-  caretLeftIcon: any; 
-  isMobileScreen: any;
+  closeIcon?: any;
+  caretLeftIcon?: any; 
+  isMobileScreen?: any;
 }

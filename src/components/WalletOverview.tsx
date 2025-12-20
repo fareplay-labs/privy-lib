@@ -11,8 +11,6 @@ export interface WalletOverviewProps {
   };
   onClick?: () => void;
   fallbackIcon?: string; 
-  isTabletScreen?: boolean;
-  isMobileScreen?: boolean;
 }
 
 const SWalletOverview = styled.div`
@@ -56,8 +54,6 @@ export const WalletOverview = ({
   activeWallet,
   onClick,
   fallbackIcon,
-  isTabletScreen = false,
-  isMobileScreen = false,
 }: WalletOverviewProps) => {
   const walletIcon = useMemo(() => {
     return activeWallet?.meta.icon || fallbackIcon;
@@ -68,8 +64,7 @@ export const WalletOverview = ({
       {walletIcon && (
         <img alt={activeWallet?.meta.name || "wallet"} src={walletIcon} />
       )}
-      {isMobileScreen && <span>{activeWallet?.meta.name}</span>}
-      {!isTabletScreen && <span>{activeWallet?.meta.name}</span>}
+      <span>{activeWallet?.meta.name}</span>
     </SWalletOverview>
   );
 };

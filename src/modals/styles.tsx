@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import { Button } from '../components/shared/Button'
+import { motion } from 'framer-motion';
 
 export const Overlay = styled.div`
   position: fixed;
@@ -34,46 +35,6 @@ export const Container = styled.div<{ $maxHeight?: string }>`
 
 export const ContentWrapper = styled.div`
   flex: 1;
-`
-
-export const FundPageButtonWrapper = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-`
-
-export const FundPageButton: any = styled(Button)`
-  background-color: #7d00ff;
-  border-radius: 624.9375rem;
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  padding: 1rem;
-  height: 56px;
-  border: none;
-  transition: background-color 0.2s ease;
-
-  &:hover {
-    background-color: #6400cc;
-    border: none;
-  }
-`
-
-export const FundPageFooter = styled.div`
-  text-align: center;
-  color: #aaaaaa;
-  font-family: system-ui, sans-serif;
-  margin-top: 16px;
-`
-
-export const ButtonText = styled.span`
-  flex: 1;
-  text-align: center;
-  text-transform: none;
-  font-size: 16px;
-  font-weight: 600;
-  font-family: system-ui, sans-serif;
 `
 
 export const SectionDescription = styled.p`
@@ -117,3 +78,190 @@ export const WithdrawalButton: any = styled(Button)`
     font-family: system-ui, sans-serif;
   }
 `
+
+export const AccordionContainer: any = styled(motion.div)`
+  text-align: left;
+  overflow: hidden;
+  background-color: #2c2c2e;
+  border-radius: 0.75rem;
+  margin-bottom: 16px;
+  padding: 1rem;
+  text-align: justify;
+  cursor: pointer;
+
+  @media (max-width: 600px) {
+    padding: 0.5rem;
+  }
+`;
+
+export const AccordionHeader: any = styled(motion.div)`
+  padding: 10px 10px 0px;
+`;
+
+export const AccordionCurrencyImgWrapper = styled.div`
+  margin-left: 8px;
+  display: inline-flex;
+  gap: 8px;
+  background-color: rgba(118, 118, 128, 0.18);
+  padding: 8px 16px;
+  border-radius: 10rem;
+  height: 1.25rem;
+  margin: 5px;
+`;
+
+export const AccordionTitle = styled.div`
+  display: inline-flex;
+  align-items: center;
+
+  > h1 {
+    display: flex;
+    font-size: 20px;
+    margin-block: 0;
+    font-family: system-ui, sans-serif;
+
+    @media (max-width: 600px) {
+      font-size: 18px;
+    }
+  }
+
+  > div {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    margin-right: 10px;
+  }
+`;
+
+export const AccordionDescription = styled.p`
+  display: inline-flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  color: #aaa;
+  font-family: system-ui, sans-serif;
+  margin-block: 0;
+`;
+
+export const AccordionContent: any = styled(motion.div)`
+  padding: 0px 10px;
+  display: block;
+  width: 85%;
+`;
+
+export const ReadMoreButton: any = styled(Button)`
+  display: flex;
+  justify-content: flex-end;
+  border: none;
+  border-radius: 10rem;
+  padding: 0.5rem;
+  padding-inline: 1rem;
+  height: 2.25rem;
+  margin: 5px;
+  background-color: rgba(118, 118, 128, 0.18);
+  backdrop-filter: blur(0px);
+  -webkit-backdrop-filter: blur(0px);
+  -moz-backdrop-filter: blur(0px);
+  -ms-backdrop-filter: blur(0px);
+
+  span {
+    font-family: system-ui, sans-serif;
+    font-size: 12px;
+  }
+
+  &:hover {
+    border: none;
+    background-color: rgba(118, 118, 128, 0.24);
+  }
+`;
+
+export const AccordionDetails: any = styled(motion.div)`
+  color: #aaa;
+`;
+
+export const DepositBoxWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  background-color: #1c1c1e;
+
+  @media (max-width: 600px) {
+    width: 100%;
+  }
+
+  .balance-received {
+    color: #4af5d3;
+  }
+
+  .balance-display {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin-top: 12px;
+  }
+`;
+
+export const DepositTitle = styled.div`
+  font-size: 20px;
+  font-weight: 600;
+  color: white;
+  line-height: 1.25;
+  font-family: system-ui, sans-serif;
+  margin-bottom: 16px;
+
+  @media (max-width: 600px) {
+    font-size: 18px;
+    margin-inline: 12px;
+  }
+`;
+
+export const BubbleWrapper = styled.div`
+  display: inline-flex;
+  gap: 8px;
+  background-color: rgba(118, 118, 128, 0.18);
+  padding: 8px 12px;
+  border-radius: 10rem;
+  width: fit-content;
+  align-items: center;
+  justify-content: center;
+     font-size: 14px;
+    line-height: 16px;
+
+  &.arbitrumBubble,
+  &.currencyBubble {
+    font-family: system-ui, sans-serif;
+    padding: 4px 8px;
+    gap: 4px;
+    margin: 2px 0 0 8px;
+  }
+  &.arbitrumBubble {
+    @media (max-width: 600px) {
+      margin-left: 0;
+    }
+  }
+`;
+
+export const DepositContent = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin: 16px 16px 16px 0;
+  font-size: 16px;
+  gap: 8px;
+  color: #aaa;
+  line-height: 1.25;
+
+  p {
+    margin: 8px 0;
+    font-family: system-ui, sans-serif;
+  }
+
+  @media (max-width: 600px) {
+       font-size: 14px;
+    line-height: 16px;
+    margin-inline: 12px;
+    word-wrap: break-word;
+  }
+`;
+
+export const SBalanceDisplay = styled.div`
+  font-family: system-ui, sans-serif;
+  margin-block: 12px;
+`;

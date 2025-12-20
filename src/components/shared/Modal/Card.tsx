@@ -30,6 +30,7 @@ const ModalCard = forwardRef<HTMLDivElement, ModalCardProps>(
       closeIcon,
       caretLeftIcon,
       isMobileScreen,
+      maxHeight
     },
     ref
   ) => {
@@ -50,7 +51,7 @@ const ModalCard = forwardRef<HTMLDivElement, ModalCardProps>(
     }
 
     const renderContent = () => (
-      <SModalContent className={className} style={style}>
+      <SModalContent className={className} style={{ ...style, maxHeight }}>
         <ModalHeader
           title={title}
           description={description}

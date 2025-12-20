@@ -1,5 +1,5 @@
 /**
- * fare-privy-core - v1.7.6 - Reliable Micro Hooks
+ * fare-privy-core - v1.8.1 - Reliable Micro Hooks
  * Proven wallet patterns with simplified balance fetching and focused micro-hooks architecture.
  */
 // ✅ CURRENT EXPORTS - Available Now
@@ -17,6 +17,7 @@ export { SelectWalletModal } from "./src/modals/SelectWalletModal/index.js";
 export { default as ModalCard } from "./src/components/shared/Modal/Card";
 export { ModalHeader } from "./src/components/shared/Modal/ModalHeader";
 export { ModalFooter } from "./src/components/shared/Modal/ModalFooter";
+
 // ✅ SIMPLIFIED WALLET HOOKS - Micro hooks architecture!
 export {
   useConnectedWallets,
@@ -26,6 +27,12 @@ export {
   useAuthActions,
   useWalletBalance,
 } from "./src/hooks/index";
+
+// ✅ NEW: FundWalletModal and related components (npm-friendly, minimal props)
+export { FundWalletModal } from "./src/modals/FundWalletModal/index";
+export { CardCarousel } from "./src/modals/FundWalletModal/CardCarousel";
+export { TransferModalFunds } from "./src/modals/FundWalletModal/TransferFunds";
+export { FundWalletMenu } from "./src/modals/FundWalletModal/FundWalletMenu";
 
 // ❌ REMOVED - Had too many external dependencies
 // export * from "./farePrivy/modals/index.js";
@@ -56,6 +63,8 @@ export {
  *    - useIsAuthenticated: Check authentication status
  *    - useAuthActions: Login/logout functions for casino entry
  *    - useWalletBalance: Simplified balance fetching using reliable patterns (ETH/SOL)
+ * ✅ FundWalletModal - Ready-to-use wallet funding modal with animated carousel and minimal required props
+ * ✅ CardCarousel, TransferModalFunds, FundWalletMenu - Modular, npm-friendly wallet funding UI components
  *
  * 💡 Configuration:
  * Users should provide their own Privy configuration.
