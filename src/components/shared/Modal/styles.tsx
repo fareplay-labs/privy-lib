@@ -29,6 +29,13 @@ export const SModalWrapper: any = styled(motion.div)`
   height: 100%;
   min-width: 450px;
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+  
+  /* Hide scrollbars for wrapper if any */
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+  &::-webkit-scrollbar {
+    display: none;
+  }
 
   @media (max-width: 600px) {
     min-width: 300px;
@@ -48,6 +55,12 @@ export const SModalContent = styled.div`
   border-radius: 6px;
   overflow: hidden;
   position: relative;
+  /* Hide scrollbars for modal content */
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+  &::-webkit-scrollbar {
+    display: none;
+  }
 
   &.card-modal-content {
     height: 600px;
@@ -150,7 +163,7 @@ export const SModalDescription = styled.p`
   margin: 8px 0;
   text-align: justify;
 
-   @media (max-width: 600px) {
+  @media (max-width: 600px) {
     font-size: 14px;
     margin-inline: 12px;
     text-align: left;
@@ -162,6 +175,12 @@ export const SModalBody = styled.div`
   flex-grow: 1;
   width: 100%;
   padding: 16px;
+  /* Hide scrollbars for modal body */
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+  &::-webkit-scrollbar {
+    display: none;
+  }
 
   @media (max-width: 600px) {
     padding: 8px;

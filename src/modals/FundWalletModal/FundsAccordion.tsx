@@ -1,9 +1,8 @@
-import { AnimatePresence, motion, type Variants } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import { Button, ButtonEnum } from "../../components/shared/Button";
 import {
   AccordionContainer,
   AccordionContent,
-  AccordionCurrencyImgWrapper,
   AccordionDescription,
   AccordionHeader,
   AccordionTitle,
@@ -12,7 +11,6 @@ import {
 
 interface FundsAccordionProps {
   title?: string;
-  images?: string[];
   description?: React.ReactNode;
   fullContent?: React.ReactNode;
   children?: React.ReactNode;
@@ -20,8 +18,6 @@ interface FundsAccordionProps {
   isOpen: boolean;
   id: string;
   onToggle: (id: string) => void;
-  caretRightIcon?: string; // Pass SVG/icon as prop
-  caretDownIcon?: string; // Pass SVG/icon as prop
   renderButton?: (
     props: React.ButtonHTMLAttributes<HTMLButtonElement>
   ) => React.ReactNode; // Optional custom button
@@ -29,15 +25,8 @@ interface FundsAccordionProps {
   className?: string;
 }
 
-const nextButtonVariant: Variants = {
-  initial: { x: 0 },
-  animate: { x: 0 },
-  hover: { x: [0, 5, 0] },
-};
-
 export const FundsAccordion: React.FC<FundsAccordionProps> = ({
   title,
-  images = [],
   description,
   fullContent,
   children,
@@ -45,8 +34,6 @@ export const FundsAccordion: React.FC<FundsAccordionProps> = ({
   isOpen,
   id,
   onToggle,
-  caretRightIcon,
-  caretDownIcon,
 }) => {
   return (
     <AccordionContainer
@@ -65,7 +52,7 @@ export const FundsAccordion: React.FC<FundsAccordionProps> = ({
             ? fullContent
             : `${(description ?? "").toString().substring(0, 50)}...`}
           <Button
-            style={{ border: "none", backgroundColor: "transparent" }}
+            style={{ border: "none", backgroundColor: "transparent", fontSize: 16 }}
             onClick={(e) => {
               e.stopPropagation();
               next();
@@ -73,16 +60,7 @@ export const FundsAccordion: React.FC<FundsAccordionProps> = ({
             buttonType={ButtonEnum.BASE}
             disabled={false}
           >
-            {caretRightIcon && (
-              <motion.img
-                src={caretRightIcon}
-                width={18}
-                initial="initial"
-                animate="animate"
-                whileHover="hover"
-                variants={nextButtonVariant}
-              />
-            )}
+            &gt;
           </Button>
         </AccordionDescription>
       </AccordionHeader>
@@ -97,22 +75,7 @@ export const FundsAccordion: React.FC<FundsAccordionProps> = ({
             disabled={false}
           >
             {isOpen ? "Read less" : "Read more"}
-            {caretDownIcon && (
-              <motion.img
-                src={caretDownIcon}
-                width={18}
-                style={{ verticalAlign: "bottom", marginLeft: "5px" }}
-                animate={{ rotate: isOpen ? -180 : 0 }}
-                transition={{ duration: 0.3 }}
-              />
-            )}
           </ReadMoreButton>
-
-          <AccordionCurrencyImgWrapper>
-            {images.slice(0, 4).map((img, i) => (
-              <img src={img} width={18} key={i} alt={`currency-${i}`} />
-            ))}
-          </AccordionCurrencyImgWrapper>
         </motion.div>
       )}
       <AnimatePresence initial={false}>

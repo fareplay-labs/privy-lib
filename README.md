@@ -159,9 +159,71 @@ A ready-to-use modal for funding your wallet, with animated carousel and exchang
 - Animated card carousel (`CardCarousel`)
 - Transfer funds via exchange or card
 - Uses `useWalletBalance` for live balances
+- Fully customizable images, navigation, and step control
 - Minimal required props, npm-friendly defaults
 
-**Usage:**
+**Props:**
+| Prop           | Type                       | Description                                 |
+|----------------|----------------------------|---------------------------------------------|
+| `isOpen`       | `boolean`                  | Controls modal visibility                   |
+| `onClose`      | `() => void`               | Function to close the modal                 |
+| `images`       | `string[]`                 | Custom images for exchanges/cards           |
+| `stepIdx`      | `number`                   | (Optional) Current step index (carousel)    |
+| `setStepIdx`   | `(idx: number) => void`    | (Optional) Handler to change step index     |
+| `onTransferNext` | `() => void`             | (Optional) Handler for transfer next action |
+| `onDepositNext` | `() => void`              | (Optional) Handler for deposit next action  |
+
+**Basic Usage Example:**
+```tsx
+import React, { useState } from "react";
+import { FundWalletModal } from "fare-privy-core";
+
+export function FundWalletModalDemo() {
+  const [isOpen, setIsOpen] = useState(false);
+  return (
+    <>
+      <button onClick={() => setIsOpen(true)}>Open Fund Wallet Modal</button>
+      <FundWalletModal isOpen={isOpen} onClose={() => setIsOpen(false)} />
+    </>
+  );
+}
+```
+
+**Advanced Usage Example (Custom images, step control, handlers):**
+```tsx
+import React, { useState } from "react";
+import { FundWalletModal } from "fare-privy-core";
+
+const customImages = [
+  "/custom/coinbase.svg",
+  "/custom/binance.svg",
+  "/custom/kraken.svg",
+  "/custom/card.svg",
+];
+
+export function CustomFundWalletModalDemo() {
+  const [isOpen, setIsOpen] = useState(false);
+  const [stepIdx, setStepIdx] = useState(0);
+  const handleTransferNext = () => setStepIdx(1);
+  const handleDepositNext = () => setStepIdx(1);
+  return (
+    <>
+      <button onClick={() => setIsOpen(true)}>Open Fund Wallet Modal</button>
+      <FundWalletModal
+        isOpen={isOpen}
+        onClose={() => { setIsOpen(false); setStepIdx(0); }}
+        images={customImages}
+        stepIdx={stepIdx}
+        setStepIdx={setStepIdx}
+        onTransferNext={handleTransferNext}
+        onDepositNext={handleDepositNext}
+      />
+    </>
+  );
+}
+```
+
+You can fully control the modal's images, navigation, and step logic from your app. The modal will call `onClose` when the user closes it.
 ---
 
 ## 🪝 Hooks Overview

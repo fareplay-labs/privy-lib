@@ -16,11 +16,13 @@ import {
 export interface FundWalletMenuProps {
   onTransferNext?: () => void;
   onDepositNext?: () => void;
+  setStepIdx?: (idx: number) => void;
 }
 
 export const FundWalletMenu: React.FC<FundWalletMenuProps> = ({
   onTransferNext = () => {},
   onDepositNext = () => {},
+  setStepIdx,
 }) => {
   const [activeAccordion, setActiveAccordion] = useState<string | null>(null);
 
@@ -32,13 +34,7 @@ export const FundWalletMenu: React.FC<FundWalletMenuProps> = ({
     if (description.length <= 50) return description;
     return description.substring(0, 50).trim() + "...";
   };
-  // Hardcoded images for typical exchanges/cards
-  const images = [
-    "/icons/coinbase.svg",
-    "/icons/binance.svg",
-    "/icons/kraken.svg",
-    "/icons/card.svg",
-  ];
+
 
   return (
     <motion.div layout>
@@ -49,7 +45,6 @@ export const FundWalletMenu: React.FC<FundWalletMenuProps> = ({
           onToggle={handleAccordionToggle}
           next={onTransferNext}
           title="Transfer Crypto"
-          images={images.slice(0, 3)}
           description={truncatedDescription(transferReadMoreText.join(" "))}
           fullContent={
             <AccordionDetails>
@@ -65,7 +60,6 @@ export const FundWalletMenu: React.FC<FundWalletMenuProps> = ({
           onToggle={handleAccordionToggle}
           next={onDepositNext}
           title="Card Deposit"
-          images={images.slice(0, 4)}
           description={truncatedDescription(depositReadMoreText.join(" "))}
           fullContent={
             <AccordionDetails>

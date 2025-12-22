@@ -14,7 +14,6 @@ export interface ModalHeaderProps
     ModalCardProps,
     "title" | "description" | "className" | "onClose" | "setIsVisible"
   > {
-  closeIcon: string; // URL or import provided by consumer
   isMobileScreen?: boolean; // Optionally allow consumer to control breakpoint
 }
 
@@ -24,7 +23,6 @@ export const ModalHeader: React.FC<ModalHeaderProps> = ({
   className,
   onClose,
   setIsVisible = () => {},
-  closeIcon,
   isMobileScreen,
 }) => {
   // Optionally allow consumer to control breakpoint, otherwise fallback to false
@@ -64,8 +62,9 @@ export const ModalHeader: React.FC<ModalHeaderProps> = ({
             aria-label="Close modal"
             disabled={false}
             onClick={handleClose}
+            style={{ fontSize: 16, lineHeight: 1 }}
           >
-            <img src={closeIcon} alt="close" width={28} />
+            &times;
           </SModalButton>
         )}
       </SModalTitle>

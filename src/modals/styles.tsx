@@ -97,15 +97,6 @@ export const AccordionHeader: any = styled(motion.div)`
   padding: 10px 10px 0px;
 `;
 
-export const AccordionCurrencyImgWrapper = styled.div`
-  display: inline-flex;
-  gap: 8px;
-  background-color: rgba(118, 118, 128, 0.18);
-  padding: 8px 16px;
-  border-radius: 10rem;
-  height: 1.25rem;
-  margin: 5px 5px 5px 8px;
-`;
 
 export const AccordionTitle = styled.div`
   display: inline-flex;
@@ -138,6 +129,7 @@ export const AccordionDescription = styled.p`
   color: #aaa;
   font-family: system-ui, sans-serif;
   margin-block: 0;
+  gap: 12px;
 `;
 
 export const AccordionContent: any = styled(motion.div)`
@@ -211,31 +203,6 @@ export const DepositTitle = styled.div`
   }
 `;
 
-export const BubbleWrapper = styled.div`
-  display: inline-flex;
-  gap: 8px;
-  background-color: rgba(118, 118, 128, 0.18);
-  padding: 8px 12px;
-  border-radius: 10rem;
-  width: fit-content;
-  align-items: center;
-  justify-content: center;
-  font-size: 14px;
-  line-height: 16px;
-
-  &.arbitrumBubble,
-  &.currencyBubble {
-    font-family: system-ui, sans-serif;
-    padding: 4px 8px;
-    gap: 4px;
-    margin: 2px 0 0 8px;
-  }
-  &.arbitrumBubble {
-    @media (max-width: 600px) {
-      margin-left: 0;
-    }
-  }
-`;
 
 export const DepositContent = styled.div`
   display: flex;

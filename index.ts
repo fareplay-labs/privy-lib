@@ -1,5 +1,5 @@
 /**
- * fare-privy-core - v1.8.1 - Reliable Micro Hooks
+ * fare-privy-core - v1.8.8 - Updated FundsModal
  * Proven wallet patterns with simplified balance fetching and focused micro-hooks architecture.
  */
 // ✅ CURRENT EXPORTS - Available Now

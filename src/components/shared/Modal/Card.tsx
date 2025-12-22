@@ -27,7 +27,6 @@ const ModalCard = forwardRef<HTMLDivElement, ModalCardProps>(
       stepIdx = 0,
       setStepIdx = () => {},
       style,
-      closeIcon,
       caretLeftIcon,
       isMobileScreen,
       maxHeight
@@ -58,7 +57,6 @@ const ModalCard = forwardRef<HTMLDivElement, ModalCardProps>(
           className={className}
           onClose={onClose}
           setIsVisible={setIsVisible}
-          closeIcon={closeIcon} // Pass down closeIcon
           isMobileScreen={isMobileScreen}
         />
         <SModalBody>{children}</SModalBody>
@@ -67,7 +65,7 @@ const ModalCard = forwardRef<HTMLDivElement, ModalCardProps>(
             stepIdx={stepIdx}
             setStepIdx={setStepIdx}
             submit={submit}
-            caretLeftIcon={caretLeftIcon} // Pass down caretLeftIcon
+            // caretLeftIcon={caretLeftIcon} // Pass down caretLeftIcon
           />
         )}
       </SModalContent>

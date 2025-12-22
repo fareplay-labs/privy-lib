@@ -20,6 +20,9 @@ import { useWalletBalance } from "../../hooks/useWalletBalance";
 
 export interface CardCarouselProps {
   stepIndex: number;
+  setStepIdx?: (idx: number) => void;
+  onTransferNext?: () => void;
+  onDepositNext?: () => void;
   className?: string;
   style?: React.CSSProperties;
   footer?: React.ReactNode;
@@ -27,23 +30,39 @@ export interface CardCarouselProps {
 
 export const CardCarousel: React.FC<CardCarouselProps> = ({
   stepIndex,
+  setStepIdx,
   className,
   style,
   footer,
 }) => {
   const { ethereumBalance } = useWalletBalance();
 
+  // Handlers to move to the correct step
+  const handleTransferNext = () => setStepIdx?.(1);
+  const handleDepositNext = () => setStepIdx?.(2);
+
   const cards = useMemo(
     () => [
-      <FundWalletMenu key={0} />,
+      <FundWalletMenu
+        key={0}
+        onTransferNext={handleTransferNext}
+        onDepositNext={handleDepositNext}
+        setStepIdx={setStepIdx}
+      />,
       <TransferModalFunds
         key={1}
         selectedCurrencyBalance={ethereumBalance ?? 0}
       />,
+      <div key={2} style={{ padding: 32, textAlign: "center" }}>
+        <h2>Card Deposit Coming Soon</h2>
+        <p>Integrate your card deposit provider here.</p>
+      </div>,
     ],
-    [ethereumBalance]
+    [ethereumBalance, setStepIdx]
   );
-  const selectedCardElem = cards[stepIndex] ?? cards[0];
+
+  const selectedCardElem = useMemo(() => cards[stepIndex], [cards, stepIndex]);
+
   return (
     <Container className={className} style={style}>
       <ContentWrapper>
