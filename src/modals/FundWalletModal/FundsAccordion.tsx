@@ -1,3 +1,4 @@
+import React from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { Button, ButtonEnum } from "../../components/shared/Button";
 import {
@@ -52,7 +53,11 @@ export const FundsAccordion: React.FC<FundsAccordionProps> = ({
             ? fullContent
             : `${(description ?? "").toString().substring(0, 50)}...`}
           <Button
-            style={{ border: "none", backgroundColor: "transparent", fontSize: 16 }}
+            style={{
+              border: "none",
+              backgroundColor: "transparent",
+              fontSize: 16,
+            }}
             onClick={(e) => {
               e.stopPropagation();
               next();

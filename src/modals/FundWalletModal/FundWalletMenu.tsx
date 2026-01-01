@@ -1,3 +1,4 @@
+import React from "react";
 import { LayoutGroup, motion } from "framer-motion";
 import { FundsAccordion } from "./FundsAccordion";
 import { useState } from "react";
@@ -34,7 +35,6 @@ export const FundWalletMenu: React.FC<FundWalletMenuProps> = ({
     if (description.length <= 50) return description;
     return description.substring(0, 50).trim() + "...";
   };
-
 
   return (
     <motion.div layout>

@@ -1,3 +1,4 @@
+import React from "react";
 import { modalVariants } from "../../../modals/SelectWalletModal/variants";
 import { SGradientWalletModalContent } from "../../../modals/SelectWalletModal/styles";
 import {
@@ -27,9 +28,8 @@ const ModalCard = forwardRef<HTMLDivElement, ModalCardProps>(
       stepIdx = 0,
       setStepIdx = () => {},
       style,
-      caretLeftIcon,
       isMobileScreen,
-      maxHeight
+      maxHeight,
     },
     ref
   ) => {
@@ -65,7 +65,6 @@ const ModalCard = forwardRef<HTMLDivElement, ModalCardProps>(
             stepIdx={stepIdx}
             setStepIdx={setStepIdx}
             submit={submit}
-            // caretLeftIcon={caretLeftIcon} // Pass down caretLeftIcon
           />
         )}
       </SModalContent>

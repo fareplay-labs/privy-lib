@@ -1,6 +1,13 @@
 /**
- * fare-privy-core - v1.8.8 - Updated FundsModal
- * Proven wallet patterns with simplified balance fetching and focused micro-hooks architecture.
+ * fare-privy-core - v1.9.3 - Updated FundsModal * Proven wallet patterns with simplified balance fetching and focused micro-hooks architecture.
+ *
+ * IMPORTANT:
+ * - Requires styled-components v5.x (v6.x is NOT supported)
+ * - Requires react-dom version matching your react version (recommended: ^18.3.1)
+ *
+ * Troubleshooting:
+ * - If you see broken styles or theming, check styled-components version.
+ * - If you see React rendering/hydration errors, check react-dom version.
  */
 // ✅ CURRENT EXPORTS - Available Now
 export { PrivyProvider, type PrivyProviderProps } from "./PrivyProviderTest";
@@ -28,7 +35,12 @@ export {
   useWalletBalance,
 } from "./src/hooks/index";
 
-// ✅ NEW: FundWalletModal and related components (npm-friendly, minimal props)
+// ✅ NEW: FundWalletModal and related components (fully controlled, pass fundWallet as onDepositNext)
+// Usage: Pass the fundWallet function from useFundWallet (from @privy-io/react-auth) to onDepositNext for deposit actions.
+// Example:
+//   import { useFundWallet } from '@privy-io/react-auth';
+//   const { fundWallet } = useFundWallet();
+//   <FundWalletModal isOpen={...} onClose={...} onDepositNext={fundWallet} />
 export { FundWalletModal } from "./src/modals/FundWalletModal/index";
 export { CardCarousel } from "./src/modals/FundWalletModal/CardCarousel";
 export { TransferModalFunds } from "./src/modals/FundWalletModal/TransferFunds";
@@ -38,7 +50,7 @@ export { FundWalletMenu } from "./src/modals/FundWalletModal/FundWalletMenu";
 // export * from "./farePrivy/modals/index.js";
 
 /**
- * ✅ PRODUCTION READY - v1.7.6:
+ * ✅ PRODUCTION READY - v1.9.0:
  *
  * ✅ Dependencies: Tightened version constraints for stability
  * ✅ Build System: TypeScript compilation working flawlessly

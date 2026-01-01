@@ -71,9 +71,17 @@ export const CopyToClipboard: React.FC<CopyToClipboardProps> = ({
   return (
     <SClickToCopy
       onClick={copyToClipboard}
+      onKeyDown={(e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          copyToClipboard();
+        }
+      }}
       className={className}
       aria-label={ariaLabel}
       style={style}
+      role="button"
+      tabIndex={0}
     >
       {elem}
     </SClickToCopy>

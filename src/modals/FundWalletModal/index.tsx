@@ -1,4 +1,4 @@
-import { useMemo, useRef, useState } from "react";
+import React, { useMemo, useRef, useState } from "react";
 import { useActiveWallet } from "../../hooks/useActiveWallet";
 import { CardCarousel } from "./CardCarousel";
 import ModalCard from "../../components/shared/Modal/Card";

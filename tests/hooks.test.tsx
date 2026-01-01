@@ -5,6 +5,7 @@
  * Test to verify new hooks work correctly
  */
 
+import React from "react";
 import { render } from "@testing-library/react";
 import {
   useConnectedWallets,

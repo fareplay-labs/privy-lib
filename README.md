@@ -7,14 +7,19 @@ FarePrivy is a robust, scalable React library for authentication, wallet managem
 ## 📦 Installation
 
 ```bash
-npm install fare-privy-core @privy-io/react-auth styled-components@^5.3.0 valtio@^1.12.0
+npm install fare-privy-core @privy-io/react-auth styled-components@^5.3.0 valtio@^1.12.0 react-dom@^18.3.1
 # or
-pnpm add fare-privy-core @privy-io/react-auth styled-components@^5.3.0 valtio@^1.12.0
+pnpm add fare-privy-core @privy-io/react-auth styled-components@^5.3.0 valtio@^1.12.0 react-dom@^18.3.1
 ```
 
 **Important:**
-- Use `styled-components` v5.x (not v6.x)
+- Use `styled-components` v5.x (not v6.x). v6.x is not supported and will break theming and modal styles.
 - Use `valtio` v1.x (not v2.x)
+- Use `react-dom` version matching your `react` version (recommended: `^18.3.1`).
+
+**Troubleshooting:**
+- If you see errors or broken styles related to styled-components, ensure you are using v5.x and not v6.x.
+- If you see React rendering or hydration errors, ensure `react-dom` matches your `react` version.
 
 ---
 
@@ -171,19 +176,21 @@ A ready-to-use modal for funding your wallet, with animated carousel and exchang
 | `stepIdx`      | `number`                   | (Optional) Current step index (carousel)    |
 | `setStepIdx`   | `(idx: number) => void`    | (Optional) Handler to change step index     |
 | `onTransferNext` | `() => void`             | (Optional) Handler for transfer next action |
-| `onDepositNext` | `() => void`              | (Optional) Handler for deposit next action  |
+| `onDepositNext` | `() => void`              | (Recommended) Handler for deposit next action. Pass the fundWallet function from useFundWallet (see below). |
 
-**Basic Usage Example:**
+**Recommended Usage:**
 ```tsx
 import React, { useState } from "react";
 import { FundWalletModal } from "fare-privy-core";
+import { useFundWallet } from "@privy-io/react-auth";
 
 export function FundWalletModalDemo() {
   const [isOpen, setIsOpen] = useState(false);
+  const { fundWallet } = useFundWallet();
   return (
     <>
       <button onClick={() => setIsOpen(true)}>Open Fund Wallet Modal</button>
-      <FundWalletModal isOpen={isOpen} onClose={() => setIsOpen(false)} />
+      <FundWalletModal isOpen={isOpen} onClose={() => setIsOpen(false)} onDepositNext={fundWallet} />
     </>
   );
 }
@@ -193,6 +200,7 @@ export function FundWalletModalDemo() {
 ```tsx
 import React, { useState } from "react";
 import { FundWalletModal } from "fare-privy-core";
+import { useFundWallet } from "@privy-io/react-auth";
 
 const customImages = [
   "/custom/coinbase.svg",
@@ -205,7 +213,7 @@ export function CustomFundWalletModalDemo() {
   const [isOpen, setIsOpen] = useState(false);
   const [stepIdx, setStepIdx] = useState(0);
   const handleTransferNext = () => setStepIdx(1);
-  const handleDepositNext = () => setStepIdx(1);
+  const { fundWallet } = useFundWallet();
   return (
     <>
       <button onClick={() => setIsOpen(true)}>Open Fund Wallet Modal</button>
@@ -216,7 +224,7 @@ export function CustomFundWalletModalDemo() {
         stepIdx={stepIdx}
         setStepIdx={setStepIdx}
         onTransferNext={handleTransferNext}
-        onDepositNext={handleDepositNext}
+        onDepositNext={fundWallet}
       />
     </>
   );

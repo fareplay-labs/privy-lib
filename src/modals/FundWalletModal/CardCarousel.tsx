@@ -26,37 +26,33 @@ export interface CardCarouselProps {
   className?: string;
   style?: React.CSSProperties;
   footer?: React.ReactNode;
+  chainDefinition?: string;
 }
 
 export const CardCarousel: React.FC<CardCarouselProps> = ({
   stepIndex,
   setStepIdx,
+  onDepositNext,
   className,
   style,
   footer,
 }) => {
   const { ethereumBalance } = useWalletBalance();
 
-  // Handlers to move to the correct step
   const handleTransferNext = () => setStepIdx?.(1);
-  const handleDepositNext = () => setStepIdx?.(2);
 
   const cards = useMemo(
     () => [
       <FundWalletMenu
         key={0}
         onTransferNext={handleTransferNext}
-        onDepositNext={handleDepositNext}
+        onDepositNext={onDepositNext}
         setStepIdx={setStepIdx}
       />,
       <TransferModalFunds
         key={1}
         selectedCurrencyBalance={ethereumBalance ?? 0}
       />,
-      <div key={2} style={{ padding: 32, textAlign: "center" }}>
-        <h2>Card Deposit Coming Soon</h2>
-        <p>Integrate your card deposit provider here.</p>
-      </div>,
     ],
     [ethereumBalance, setStepIdx]
   );
