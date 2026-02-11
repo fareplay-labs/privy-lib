@@ -1,5 +1,6 @@
 /**
- * fare-privy-core - v1.9.3 - Updated FundsModal * Proven wallet patterns with simplified balance fetching and focused micro-hooks architecture.
+ * fare-privy-core - v1.9.4 - Refactored SelectWalletModal for better maintainability
+ * Proven wallet patterns with simplified balance fetching and focused micro-hooks architecture.
  *
  * IMPORTANT:
  * - Requires styled-components v5.x (v6.x is NOT supported)
@@ -19,6 +20,7 @@ export * from "./src/store/switchWallet";
 export { WalletOverview } from "./src/components/WalletOverview";
 export { Button, ButtonEnum } from "./src/components/shared/Button";
 export { SelectWalletModal } from "./src/modals/SelectWalletModal/index.js";
+export type { SelectWalletModalProps } from "./src/modals/SelectWalletModal/types";
 
 // Export shared modal components
 export { default as ModalCard } from "./src/components/shared/Modal/Card";
