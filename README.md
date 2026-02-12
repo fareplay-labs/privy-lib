@@ -126,12 +126,18 @@ function App() {
 
 ### SelectWalletModal
 
-Animated, responsive modal for selecting and linking wallets. Refactored in v1.9.4 for better code organization with separated components and type definitions. You provide wallet data and icons.
+Animated, responsive modal for selecting and linking wallets. Fully modularized in v1.9.6 with optimized component structure. You provide wallet data and icons.
 
-**Architecture:**
-- Modular component structure with `SelectWalletModalContent` extracted for maintainability
-- Type definitions in dedicated `types.tsx` for better type safety
-- Clean separation of concerns for easier customization and extension
+**Architecture (v1.9.6):**
+- **Fully modular component structure** with dedicated, focused sub-components:
+  - `SelectWalletModalContent` - Main content container and orchestration
+  - `SelectWalletModalHeader` - Header with drag bar support (rendered once at top)
+  - `SelectWalletItemList` - Individual wallet item with accordion and embedded wallets
+  - `LinkWallet` - Separate component for wallet linking functionality
+- **Optimized rendering** - Header rendered once at container level instead of per-item
+- **Type definitions** in dedicated `types.tsx` for better type safety
+- **Clean separation of concerns** - each component has a single, well-defined responsibility
+- **Improved maintainability** - easier to customize, extend, and test individual pieces
 
 **Props:**
 
