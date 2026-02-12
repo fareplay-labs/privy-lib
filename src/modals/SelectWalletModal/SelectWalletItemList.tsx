@@ -1,3 +1,4 @@
+import React from "react";
 import {
   SWalletItem,
   SAccordionButtonContainer,
@@ -10,7 +11,6 @@ import {
   SWalletItemList,
 } from "./styles";
 import { embeddedWalletsListVariants } from "./variants";
-
 interface Wallet {
   address: string;
   meta: { name: string; icon?: string };
