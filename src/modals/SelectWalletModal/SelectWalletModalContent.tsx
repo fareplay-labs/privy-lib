@@ -48,8 +48,11 @@ export const SelectWalletModalContent = ({
       animate="animate"
       exit="exit"
     >
-      {/* <SelectWalletModalHeader isMobileScreen={isMobileScreen} icons={icons} /> */}
       <SSelectWalletModalContent>
+        <SelectWalletModalHeader
+          isMobileScreen={isMobileScreen}
+          icons={icons}
+        />
         {filteredWallets.map((wallet) => {
           const isSelected =
             wallet.walletClientType === selectedWallet.walletClientType;
@@ -87,24 +90,17 @@ export const SelectWalletModalContent = ({
             });
 
           return (
-            <>
-              <SelectWalletModalHeader
-                isMobileScreen={isMobileScreen}
-                icons={icons}
-              />
-
-              <SelectWalletItemList
-                key={wallet.address}
-                wallet={wallet}
-                isSelected={isSelected}
-                onClick={onClick}
-                isPrivyWallet={isPrivyWallet}
-                embeddedWallets={embeddedWallets}
-                expandedWallets={expandedWallets}
-                setExpandedWallets={setExpandedWallets}
-                icons={icons}
-              />
-            </>
+            <SelectWalletItemList
+              key={wallet.address}
+              wallet={wallet}
+              isSelected={isSelected}
+              onClick={onClick}
+              isPrivyWallet={isPrivyWallet}
+              embeddedWallets={embeddedWallets}
+              expandedWallets={expandedWallets}
+              setExpandedWallets={setExpandedWallets}
+              icons={icons}
+            />
           );
         })}
         <LinkWallet linkWalletToUser={linkWalletToUser} icons={icons} />

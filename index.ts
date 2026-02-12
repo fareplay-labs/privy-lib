@@ -1,5 +1,5 @@
 /**
- * fare-privy-core - v1.9.6 - Fully modularized SelectWalletModal components
+ * fare-privy-core - v1.9.7 - Fixed SelectWalletModal header rendering
  * Proven wallet patterns with simplified balance fetching and focused micro-hooks architecture.
  *
  * IMPORTANT:
