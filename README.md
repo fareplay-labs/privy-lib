@@ -2,6 +2,14 @@
 
 FarePrivy is a robust, scalable React library for authentication, wallet management, and casino-specific integrations, built around Privy Auth with advanced configuration, smart wallet, and USDC Vault support.
 
+## 🆕 What's New (v1.9.13)
+
+- Added `QuickPlayModal` as a fully npm-friendly export
+- QuickPlay approve is now enabled only when the active wallet is Privy
+- Removed automatic wallet switching from QuickPlay approve flow
+- `useActiveWallet` now respects selected connector preference from shared wallet state
+- `SelectWalletModal` now updates shared `switchWalletState` so wallet selection is reflected globally
+
 ---
 
 ## 📦 Installation
@@ -126,7 +134,18 @@ function App() {
 
 ### SelectWalletModal
 
-Animated, responsive modal for selecting and linking wallets. You provide wallet data and icons.
+Animated, responsive modal for selecting and linking wallets. Header rendering fixed in v1.9.7. You provide wallet data and icons.
+
+**Architecture (v1.9.7):**
+- **Fully modular component structure** with dedicated, focused sub-components:
+  - `SelectWalletModalContent` - Main content container and orchestration
+  - `SelectWalletModalHeader` - Header with drag bar support (rendered once inside content container)
+  - `SelectWalletItemList` - Individual wallet item with accordion and embedded wallets
+  - `LinkWallet` - Separate component for wallet linking functionality
+- **Fixed rendering** - Header now correctly renders once at the top of the content container
+- **Type definitions** in dedicated `types.tsx` for better type safety
+- **Clean separation of concerns** - each component has a single, well-defined responsibility
+- **Improved maintainability** - easier to customize, extend, and test individual pieces
 
 **Props:**
 
@@ -234,11 +253,61 @@ export function CustomFundWalletModalDemo() {
 You can fully control the modal's images, navigation, and step logic from your app. The modal will call `onClose` when the user closes it.
 ---
 
+### QuickPlayModal
+
+A controlled modal for enabling quickplay setup with a consumer-provided approval flow.
+
+**Features:**
+- npm-friendly and app-agnostic (no app-level config dependencies)
+- uses your own `onApprove` logic for setup/transactions
+- approve button is enabled only when the currently active wallet is Privy
+- optional `currencyName` display override
+
+**Props:**
+| Prop | Type | Description |
+|------|------|-------------|
+| `isVisible` | `boolean` | Controls modal visibility |
+| `setIsVisible` | `(isVisible: boolean) => void` | Visibility state setter |
+| `formData` | `any` | Data passed into your approve handler |
+| `onApprove` | `(formData: any) => Promise<void> \| void` | Called when user clicks APPROVE |
+| `currencyName` | `string` | (Optional) Currency label shown in the modal body |
+
+**Usage Example:**
+```tsx
+import React, { useState } from "react";
+import { QuickPlayModal } from "fare-privy-core";
+
+export function QuickPlayModalDemo() {
+  const [isVisible, setIsVisible] = useState(false);
+
+  const handleApprove = async (formData: { amount: number; game: string }) => {
+    // perform your app-specific quickplay setup/transaction logic
+    await Promise.resolve(formData);
+  };
+
+  return (
+    <>
+      <button onClick={() => setIsVisible(true)}>Open QuickPlay Modal</button>
+      <QuickPlayModal
+        isVisible={isVisible}
+        setIsVisible={setIsVisible}
+        formData={{ amount: 10, game: "quickplay" }}
+        onApprove={handleApprove}
+        currencyName="ETH"
+      />
+    </>
+  );
+}
+```
+
+`APPROVE` is disabled unless the active wallet is Privy.
+---
+
 ## 🪝 Hooks Overview
 
 - `useAuthActions()` – Login/logout control
 - `useConnectedWallets()` – All wallet info
-- `useActiveWallet()` – Get active wallet
+- `useActiveWallet()` – Get active wallet (respects selected connector preference)
 - `useWalletAddresses()` – Get addresses by chain
 - `useIsAuthenticated()` – Simple auth check
 - `useWalletBalance()` – Native currency balances
@@ -320,6 +389,42 @@ function CustomCasino() {
 - Uses `styled-components` for all styles
 - Theme via provider or CSS variables (see `styles/privy-theme-override.css`)
 - No direct asset imports; all icons are provided by the consumer
+
+---
+
+## 🗒️ Changelog Format
+
+Use this structure for future release notes:
+
+```md
+## 🆕 What's New (vX.Y.Z)
+
+- Added:
+  - ...
+- Changed:
+  - ...
+- Fixed:
+  - ...
+- Notes:
+  - Migration steps, breaking changes, or upgrade tips
+```
+
+Example:
+
+```md
+## 🆕 What's New (v1.9.13)
+
+- Added:
+  - QuickPlayModal export for npm consumers
+  - SelectWalletModalContent test coverage for shared-state update behavior
+- Changed:
+  - QuickPlay approve is now gated by active Privy wallet
+  - useActiveWallet now respects selected connector preference
+  - SelectWalletModal selection now writes to shared switchWalletState
+- Fixed:
+  - Removed unintended wallet auto-switch side effect during QuickPlay approve
+  - SelectWallet selection now updates active wallet outside modal scope
+```
 
 ---
 

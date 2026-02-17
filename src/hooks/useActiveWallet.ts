@@ -9,6 +9,8 @@ import {
   useWallets,
   type ConnectedWallet,
 } from "@privy-io/react-auth";
+import { useSnapshot } from "valtio";
+import { switchWalletState } from "../store/switchWallet";
 
 export interface IActiveWallet extends ConnectedWallet {
   getEthereumProvider: () => Promise<any>;
@@ -18,9 +20,10 @@ export interface IActiveWallet extends ConnectedWallet {
 export const useActiveWallet = () => {
   const { ready, authenticated } = usePrivy();
   const { wallets: unlinkedWallets } = useWallets();
+  const { selectedConnectorType } = useSnapshot(switchWalletState);
   const wallets = useMemo(
     () => unlinkedWallets.filter((wallet) => wallet.linked),
-    [unlinkedWallets]
+    [unlinkedWallets],
   );
 
   // Previous stable pattern: select first linked wallet as active
@@ -37,19 +40,38 @@ export const useActiveWallet = () => {
 
   const activeWallet = useMemo(() => {
     if (!ready || !authenticated || wallets.length === 0) return null;
-    const selectedWallet = wallets[0];
+    const selectedWallet =
+      wallets.find((wallet) => {
+        const walletClientType = (wallet as any).walletClientType;
+        const connectorType = (wallet as any).connectorType;
+        const selectedType = selectedConnectorType?.toLowerCase();
+
+        if (!selectedType) return false;
+
+        if (
+          selectedType === "privy" &&
+          (walletClientType === "privy" || connectorType === "embedded")
+        ) {
+          return true;
+        }
+
+        return (
+          walletClientType === selectedConnectorType ||
+          connectorType === selectedConnectorType
+        );
+      }) || wallets[0];
     // Only return if it passes the type guard
     return isActiveWallet(selectedWallet) ? selectedWallet : null;
-  }, [ready, authenticated, wallets]);
+  }, [ready, authenticated, wallets, selectedConnectorType]);
 
   const walletAddress = useMemo(
     () => activeWallet?.address || "",
-    [activeWallet]
+    [activeWallet],
   );
   const isWalletAuthed = useMemo(() => Boolean(activeWallet), [activeWallet]);
   const readyAndAuth = useMemo(
     () => ready && authenticated,
-    [ready, authenticated]
+    [ready, authenticated],
   );
 
   return useMemo(
@@ -70,6 +92,6 @@ export const useActiveWallet = () => {
       authenticated,
       readyAndAuth,
       wallets,
-    ]
+    ],
   );
 };
