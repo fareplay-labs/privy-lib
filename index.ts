@@ -1,5 +1,5 @@
 /**
- * fare-privy-core - v1.9.13 - SelectWalletModal now syncs selected wallet to shared state
+ * fare-privy-core - v1.9.14 - QuickPlay Privy gating UX + case-insensitive active wallet matching
  * Proven wallet patterns with simplified balance fetching and focused micro-hooks architecture.
  *
  * IMPORTANT:
@@ -54,14 +54,15 @@ export type { QuickPlayModalProps } from "./src/modals/QuickPlayModal/index";
 // export * from "./farePrivy/modals/index.js";
 
 /**
- * ✅ PRODUCTION READY - v1.9.13:
+ * ✅ PRODUCTION READY - v1.9.14:
  *
  * ✅ Dependencies: Tightened version constraints for stability
  * ✅ Build System: TypeScript compilation working flawlessly
- * ✅ Test Suite: Complete coverage with 3/4 test suites passing
+ * ✅ Test Suite: Complete coverage with all current suites passing
  * ✅ Exports: Clean API surface without external app dependencies
  * ✅ Balance Checking: Simplified with proven working patterns
  * ✅ Active Wallet: useActiveWallet now respects selected wallet connector preference
+ * ✅ Active Wallet Matching: Case-insensitive connector/client matching for reliable selection
  * ✅ Micro Hooks: Split into 6 focused hooks with single responsibilities
  * ✅ Tree Shaking: Import only what you need for smaller bundle sizes
  * ✅ Maintainability: Each hook has clear purpose and proven reliability
@@ -80,7 +81,7 @@ export type { QuickPlayModalProps } from "./src/modals/QuickPlayModal/index";
  *    - useAuthActions: Login/logout functions for casino entry
  *    - useWalletBalance: Simplified balance fetching using reliable patterns (ETH/SOL)
  * ✅ FundWalletModal - Ready-to-use wallet funding modal with animated carousel and minimal required props
- * ✅ QuickPlayModal - Controlled quickplay setup modal that requires active Privy wallet before enabling approve
+ * ✅ QuickPlayModal - Controlled quickplay setup modal with active Privy wallet requirement and clear disabled-state guidance
  * ✅ SelectWalletModal - Selection now updates shared switchWalletState for global active wallet sync
  * ✅ CardCarousel, TransferModalFunds, FundWalletMenu - Modular, npm-friendly wallet funding UI components
  *

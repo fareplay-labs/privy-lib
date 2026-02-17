@@ -2,13 +2,26 @@
 
 FarePrivy is a robust, scalable React library for authentication, wallet management, and casino-specific integrations, built around Privy Auth with advanced configuration, smart wallet, and USDC Vault support.
 
-## 🆕 What's New (v1.9.13)
+## 🆕 What's New (v1.9.14)
 
 - Added `QuickPlayModal` as a fully npm-friendly export
 - QuickPlay approve is now enabled only when the active wallet is Privy
+- QuickPlay now shows clear disabled-state guidance when a non-Privy wallet is active (`Connect Privy Wallet` + helper message)
 - Removed automatic wallet switching from QuickPlay approve flow
 - `useActiveWallet` now respects selected connector preference from shared wallet state
+- `useActiveWallet` wallet matching is now case-insensitive across selected connector type, wallet client type, and connector type
 - `SelectWalletModal` now updates shared `switchWalletState` so wallet selection is reflected globally
+
+## 🗒️ Changelog
+
+### v1.9.14
+- Added disabled-state UX guidance to `QuickPlayModal` (`Connect Privy Wallet` label, helper message, and accessibility hinting)
+- Made `useActiveWallet` connector/client matching case-insensitive for reliable wallet selection
+- Consolidated test/build-only packages under `devDependencies`
+
+### v1.9.13
+- Added `QuickPlayModal` export and Privy-gated approval behavior
+- Synced `SelectWalletModal` wallet selection with shared `switchWalletState`
 
 ---
 
@@ -261,6 +274,7 @@ A controlled modal for enabling quickplay setup with a consumer-provided approva
 - npm-friendly and app-agnostic (no app-level config dependencies)
 - uses your own `onApprove` logic for setup/transactions
 - approve button is enabled only when the currently active wallet is Privy
+- clear disabled-state guidance for non-Privy active wallets (`Connect Privy Wallet` label + helper text)
 - optional `currencyName` display override
 
 **Props:**
@@ -300,7 +314,7 @@ export function QuickPlayModalDemo() {
 }
 ```
 
-`APPROVE` is disabled unless the active wallet is Privy.
+`APPROVE` is disabled unless the active wallet is Privy. If not, the button displays `CONNECT PRIVY WALLET` and a helper message explains how to proceed.
 ---
 
 ## 🪝 Hooks Overview

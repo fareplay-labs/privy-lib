@@ -7,6 +7,7 @@ import {
   FundPageButton,
   FundPageButtonWrapper,
   ButtonText,
+  FundPageFooter,
   QuickplayContent,
 } from "./styles";
 
@@ -36,6 +37,13 @@ export const QuickPlayModal = ({
   const isPrivyWalletActive =
     activeWalletClientType === "privy" ||
     activeWalletConnectorType === "embedded";
+  const requiresPrivyWallet = !isPrivyWalletActive;
+  const walletHelperMessage = "Please switch to a Privy wallet to approve";
+  const walletHelperId = "quickplay-wallet-helper";
+  const buttonText = requiresPrivyWallet ? "CONNECT PRIVY WALLET" : "APPROVE";
+  const loadingText = requiresPrivyWallet
+    ? "CONNECT PRIVY WALLET"
+    : "APPROVING";
 
   const setup = useCallback(async () => {
     if (!isPrivyWalletActive) {
@@ -79,15 +87,25 @@ export const QuickPlayModal = ({
       <FundPageButton
         buttonType={ButtonEnum.BASE}
         type="button"
-        disabled={isApproving || !isPrivyWalletActive}
+        disabled={isApproving || requiresPrivyWallet}
         onClick={setup}
         isLoading={isApproving}
-        loadingText={"APPROVING"}
+        loadingText={loadingText}
+        title={requiresPrivyWallet ? walletHelperMessage : undefined}
+        aria-describedby={requiresPrivyWallet ? walletHelperId : undefined}
+        aria-label={
+          requiresPrivyWallet ? walletHelperMessage : "Approve Quickplay"
+        }
       >
         <FundPageButtonWrapper>
-          <ButtonText>APPROVE</ButtonText>
+          <ButtonText>{buttonText}</ButtonText>
         </FundPageButtonWrapper>
       </FundPageButton>
+      {requiresPrivyWallet && (
+        <FundPageFooter id={walletHelperId}>
+          {walletHelperMessage}
+        </FundPageFooter>
+      )}
     </ModalCard>
   );
 };

@@ -42,8 +42,10 @@ export const useActiveWallet = () => {
     if (!ready || !authenticated || wallets.length === 0) return null;
     const selectedWallet =
       wallets.find((wallet) => {
-        const walletClientType = (wallet as any).walletClientType;
-        const connectorType = (wallet as any).connectorType;
+        const walletClientType = (
+          wallet as any
+        ).walletClientType?.toLowerCase();
+        const connectorType = (wallet as any).connectorType?.toLowerCase();
         const selectedType = selectedConnectorType?.toLowerCase();
 
         if (!selectedType) return false;
@@ -56,8 +58,7 @@ export const useActiveWallet = () => {
         }
 
         return (
-          walletClientType === selectedConnectorType ||
-          connectorType === selectedConnectorType
+          walletClientType === selectedType || connectorType === selectedType
         );
       }) || wallets[0];
     // Only return if it passes the type guard
