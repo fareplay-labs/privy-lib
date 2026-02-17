@@ -1,5 +1,5 @@
 /**
- * fare-privy-core - v1.9.7 - Fixed SelectWalletModal header rendering
+ * fare-privy-core - v1.9.13 - SelectWalletModal now syncs selected wallet to shared state
  * Proven wallet patterns with simplified balance fetching and focused micro-hooks architecture.
  *
  * IMPORTANT:
@@ -47,19 +47,21 @@ export { FundWalletModal } from "./src/modals/FundWalletModal/index";
 export { CardCarousel } from "./src/modals/FundWalletModal/CardCarousel";
 export { TransferModalFunds } from "./src/modals/FundWalletModal/TransferFunds";
 export { FundWalletMenu } from "./src/modals/FundWalletModal/FundWalletMenu";
+export { QuickPlayModal } from "./src/modals/QuickPlayModal/index";
+export type { QuickPlayModalProps } from "./src/modals/QuickPlayModal/index";
 
 // ❌ REMOVED - Had too many external dependencies
 // export * from "./farePrivy/modals/index.js";
 
 /**
- * ✅ PRODUCTION READY - v1.9.0:
+ * ✅ PRODUCTION READY - v1.9.13:
  *
  * ✅ Dependencies: Tightened version constraints for stability
  * ✅ Build System: TypeScript compilation working flawlessly
  * ✅ Test Suite: Complete coverage with 3/4 test suites passing
  * ✅ Exports: Clean API surface without external app dependencies
  * ✅ Balance Checking: Simplified with proven working patterns
- * ✅ Active Wallet: useActiveWallet hook based on reliable casino patterns
+ * ✅ Active Wallet: useActiveWallet now respects selected wallet connector preference
  * ✅ Micro Hooks: Split into 6 focused hooks with single responsibilities
  * ✅ Tree Shaking: Import only what you need for smaller bundle sizes
  * ✅ Maintainability: Each hook has clear purpose and proven reliability
@@ -78,6 +80,8 @@ export { FundWalletMenu } from "./src/modals/FundWalletModal/FundWalletMenu";
  *    - useAuthActions: Login/logout functions for casino entry
  *    - useWalletBalance: Simplified balance fetching using reliable patterns (ETH/SOL)
  * ✅ FundWalletModal - Ready-to-use wallet funding modal with animated carousel and minimal required props
+ * ✅ QuickPlayModal - Controlled quickplay setup modal that requires active Privy wallet before enabling approve
+ * ✅ SelectWalletModal - Selection now updates shared switchWalletState for global active wallet sync
  * ✅ CardCarousel, TransferModalFunds, FundWalletMenu - Modular, npm-friendly wallet funding UI components
  *
  * 💡 Configuration:

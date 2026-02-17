@@ -1,3 +1,4 @@
+import React from "react";
 import { useState, useMemo } from "react";
 import { SelectWalletModalProps } from "./types";
 
@@ -11,6 +12,7 @@ import { modalContentVariants, mobileModalContentVariants } from "./variants";
 import { LinkWallet } from "./LinkWallet";
 import { SelectWalletModalHeader } from "./SelectWalletModalHeader";
 import { SelectWalletItemList } from "./SelectWalletItemList";
+import { switchWalletState } from "../../store/switchWallet";
 
 export const SelectWalletModalContent = ({
   closeModal,
@@ -60,6 +62,7 @@ export const SelectWalletModalContent = ({
           const onClick = () => {
             if (isSelected) return;
             setAppWalletClientType(wallet.walletClientType);
+            switchWalletState.selectedConnectorType = wallet.walletClientType;
             setTimeout(closeModal, 300);
           };
 
