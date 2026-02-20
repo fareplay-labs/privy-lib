@@ -1,5 +1,5 @@
 /**
- * fare-privy-core - v1.9.14 - QuickPlay Privy gating UX + case-insensitive active wallet matching
+ * fare-privy-core - v1.9.15 - WalletOverview fallback icon support + QuickPlay Privy gating UX
  * Proven wallet patterns with simplified balance fetching and focused micro-hooks architecture.
  *
  * IMPORTANT:
@@ -17,7 +17,10 @@ export { PrivyProvider, type PrivyProviderProps } from "./PrivyProviderTest";
 export * from "./src/store/switchWallet";
 
 // Export updated UI components and modals
-export { WalletOverview } from "./src/components/WalletOverview";
+export {
+  WalletOverview,
+  type WalletOverviewProps,
+} from "./src/components/WalletOverview";
 export { Button, ButtonEnum } from "./src/components/shared/Button";
 export { SelectWalletModal } from "./src/modals/SelectWalletModal/index.js";
 export type { SelectWalletModalProps } from "./src/modals/SelectWalletModal/types";
@@ -54,12 +57,13 @@ export type { QuickPlayModalProps } from "./src/modals/QuickPlayModal/index";
 // export * from "./farePrivy/modals/index.js";
 
 /**
- * ✅ PRODUCTION READY - v1.9.14:
+ * ✅ PRODUCTION READY - v1.9.15:
  *
  * ✅ Dependencies: Tightened version constraints for stability
  * ✅ Build System: TypeScript compilation working flawlessly
  * ✅ Test Suite: Complete coverage with all current suites passing
  * ✅ Exports: Clean API surface without external app dependencies
+ * ✅ WalletOverview: Added fallback icon support via fallbackIcon prop
  * ✅ Balance Checking: Simplified with proven working patterns
  * ✅ Active Wallet: useActiveWallet now respects selected wallet connector preference
  * ✅ Active Wallet Matching: Case-insensitive connector/client matching for reliable selection

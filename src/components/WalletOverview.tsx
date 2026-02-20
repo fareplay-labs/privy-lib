@@ -18,19 +18,8 @@ const SWalletOverview = styled.div`
   align-items: center;
   justify-content: center;
   text-transform: uppercase;
-  margin-right: 12px;
-  height: 42px;
-  border: 1px solid #222a3f;
   color: #aaaaaa;
-  border-radius: 6px;
   user-select: none;
-  transition: all ease-in-out 0.08s;
-  &:hover {
-    span {
-      color: white;
-    }
-    border-color: #6366f1;
-  }
 
   img {
     height: 16px;

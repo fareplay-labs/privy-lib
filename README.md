@@ -2,7 +2,9 @@
 
 FarePrivy is a robust, scalable React library for authentication, wallet management, and casino-specific integrations, built around Privy Auth with advanced configuration, smart wallet, and USDC Vault support.
 
-## 🆕 What's New (v1.9.14)
+## 🆕 What's New (v1.9.15)
+
+- `WalletOverview` now supports `fallbackIcon` so you can provide a default icon when the active wallet has no icon metadata
 
 - Added `QuickPlayModal` as a fully npm-friendly export
 - QuickPlay approve is now enabled only when the active wallet is Privy
@@ -13,6 +15,9 @@ FarePrivy is a robust, scalable React library for authentication, wallet managem
 - `SelectWalletModal` now updates shared `switchWalletState` so wallet selection is reflected globally
 
 ## 🗒️ Changelog
+
+### v1.9.15
+- Added `fallbackIcon` support to `WalletOverview` so consumers can render a default icon when `activeWallet.meta.icon` is missing
 
 ### v1.9.14
 - Added disabled-state UX guidance to `QuickPlayModal` (`Connect Privy Wallet` label, helper message, and accessibility hinting)
